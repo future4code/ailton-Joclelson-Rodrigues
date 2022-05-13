@@ -66,7 +66,7 @@ const maiuscula = (texto) => texto.toUpperCase()
 console.log(tamanho(texto), maiuscula(texto))
 */
 
-//3
+/*3
 
 const numero1 = Number(prompt("Digite um numero"))
 const numero2 = Number(prompt("Digite outro numero"))
@@ -79,3 +79,17 @@ function operacoes(num1, num2) {
    return [soma, sub, mult, div]
 }
 console.log(operacoes(numero1, numero2))
+*/
+
+
+// calculo de cantimetros
+const altura = 10
+const largura = 20
+
+function calculaArea() {
+   let resul = altura * largura / 2
+   return resul
+}
+
+const area = calculaArea()
+console.log(area)
