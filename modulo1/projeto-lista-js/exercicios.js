@@ -31,7 +31,7 @@ function imprimeIdade() {
   // implemente sua lógica aqui
   const anoAtual = Number(prompt("Em que ano estamos?"))
   const anoNascimento = Number(prompt("Em que ano você nasceu?"))
-  const idade = anoAtual - anoNascimento
+  const idadPessoae = anoAtual - anoNascimento
   console.log(idade)
 }
 
@@ -79,7 +79,7 @@ function calculaIngressosEspetaculo(custo, valorIngresso) {
 // EXERCÍCIO 08
 function checaStringsMesmoTamanho(string1, string2) {
   // implemente sua lógica aqui
-  return string1 >= string2
+  return string1.length >= string2.length
 }
 
 // EXERCÍCIO 09
@@ -92,33 +92,43 @@ function retornaPrimeiroElemento(array) {
 // EXERCÍCIO 10
 function retornaUltimoElemento(array) {
   // implemente sua lógica aqui
-  const meuArray = [1,2,3,4,5]
-  console.log(meuArray[4])
-  return array
+  return array[array.length - 1]
 }
 
 // EXERCÍCIO 11
-
 function trocaPrimeiroEUltimo(array) {
   // implemente sua lógica aqui
-  array = [1,2,3,4,5]
   const ele = array[0]
   array.splice(0, 1)
   array.unshift(5)
   array.push(ele)
+  console.log(array)
   return array
 }
 
 // EXERCÍCIO 12
 function checaIgualdadeDesconsiderandoCase(string1, string2) {
   // implemente sua lógica aqui
-  return string1 == string2 
+  string1 = string1.toLowerCase()
+  string2 = string2.toLowerCase()
+  const check = string1 === string2
+  return check
 }
 
 // EXERCÍCIO 13
 function checaRenovacaoRG() {
   // implemente sua lógica aqui
-  
+  const anoAt = Number(prompt("Em que ano estamos?"))
+  const anoNas = Number(prompt("Qual seu ano de nascimento?"))
+  const anoId = Number(prompt("Em que ano sua carteira ID foi emitida?"))
+
+  const idadePessoa = anoAt - anoNas 
+  const idadeDocu = anoAt - anoId
+
+  const res = (idadePessoa <= 20 && idadeDocu >=5) || (idadePessoa <= 50 && idadeDocu >=10) || (idadePessoa >= 50 && idadeDocu >= 15)
+
+  console.log(res)
+  return res
 }
 
 // EXERCÍCIO 14
@@ -130,5 +140,12 @@ function checaAnoBissexto(ano) {
 // EXERCÍCIO 15
 function checaValidadeInscricaoLabenu() {
   // implemente sua lógica aqui
+  const maisDe18 = prompt("você tem mais de 18 anos?")
+  const ensinoMedio = prompt("Você possui ensino médio completo?")
+  const disponibilidade = prompt("Você possui disponibilidade exclusiva durante os horários do curso?")
 
+  const resultado = (maisDe18 === "sim" && ensinoMedio === "sim" && disponibilidade === "sim") || (maisDe18 === "não" || ensinoMedio === "não" || disponibilidade === "não")
+  
+  console.log(resultado)
+  return resultado
 }
