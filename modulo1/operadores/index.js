@@ -55,7 +55,7 @@ console.log("c) Você tem", idadeHora, "horas de vida.")
 */
 
 
-// 4
+/* 4
 const primeiroNumero = Number(prompt("Digite um número"))
 const segundoNumero = Number(prompt("Digite outro número"))
 
@@ -69,3 +69,31 @@ console.log("O primeiro número é maior que o segundo?",numeroMaior)
 console.log("O primeiro número é igual ao segundo?",numeroIgual)
 console.log("O primeiro numero é divisível pelo segundo?",numeroDivisivel)
 console.log("O segundo numero é divisível pelo primeiro?",segundoNumeroDivisivel)
+*/
+
+const sexo = (obj) => {
+   if(obj.sexo === "masculino") {
+      return "Bem-vindo!"
+   }
+   else if(obj.sexo === "feminino") {
+      return "Bem-vinda"
+   }
+   else {
+      return "Boas-vindas"
+   }
+}
+
+const pessoa1 = {
+   nome: "Joclelson",
+   sexo: "masculino"
+}
+const pessoa2 = {
+   nome: "Camila",
+   sexo: "feminino"
+}
+const pessoa3 = {
+   nome: "Cris",
+   sexo: "outro"
+}
+
+console.log(sexo(pessoa3))
