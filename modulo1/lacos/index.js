@@ -59,10 +59,10 @@ const arrayString = () => {
    const novoArray = ["oi", 2, 5, "string"]
    for(let i = 0; i < novoArray.length; i++){
       const item = novoArray[i]
-      console.log(`O elemento do índex 0 é ${item}`)
+      console.log(`O elemento do índex é ${item}`)
    }
 }
-//arrayString()
+arrayString()
 
 
 //e)
