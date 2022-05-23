@@ -165,8 +165,16 @@ function retornaContasComSaldoAtualizado(contas) {
 
 // EXERCÍCIO 15A
 function retornaArrayOrdenadoAlfabeticamente(consultas) {
-    const ordem = consultas.sort()  
-    
+    let nomes = consultas.map((itens) => {return itens.nome}).sort();
+    let ordem = []
+    for(let i = 0; i < nomes.length; i++){
+        for(let valor of consultas){
+            if(valor.nome === nomes[i]){
+                ordem.push(valor)
+            }
+        }
+    }
+    return ordem
 }
 
 // EXERCÍCIO 15B
