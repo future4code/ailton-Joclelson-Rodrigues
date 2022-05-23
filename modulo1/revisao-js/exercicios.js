@@ -15,7 +15,7 @@ function retornaArrayInvertido(array) {
 
 // EXERCÍCIO 03
 function retornaArrayOrdenado(array) {
-    array.sort((a,b) => a - b )
+    return array.sort((a,b) => a - b )
 }
 
 // EXERCÍCIO 04
@@ -26,8 +26,10 @@ function retornaNumerosPares(array) {
 
 // EXERCÍCIO 05
 function retornaNumerosParesElevadosADois(array) {
-    const arrayElevado = array.map((itens) => itens ** 2)
-    return arrayElevado
+    const arrayPares = array.filter((itens) => itens % 2 === 0).map((item) => {return item ** 2})
+    return arrayPares
+    //let elevado = array.map((item) => Math.pow(item, 2))
+    //return elevado
 }
 
 // EXERCÍCIO 06
@@ -43,7 +45,30 @@ function retornaMaiorNumero(array) {
 
 // EXERCÍCIO 07
 function retornaObjetoEntreDoisNumeros(num1, num2) {
+    let maiorNum = 0
+    let maiorDivisivelPorMenor = 0
+    let diferenca = 0
 
+    let objeto1 = {maiorNumero: 0}
+    let objeto2 = {maiorNumero: 0}
+
+    if(num1 > num2){
+        maiorNum = num1
+        maiorDivisivelPorMenor = num1 % num2 === 0
+        diferenca = num1 - num2
+        objeto1.maiorNumero = maiorNum
+        objeto1.maiorDivisivelPorMenor = maiorDivisivelPorMenor
+        objeto1.diferenca = diferenca
+        return objeto1
+    }else{
+        maiorNum = num2
+        maiorDivisivelPorMenor = num2 % num1 === 0
+        diferenca = num2 - num1
+        objeto2.maiorNumero = maiorNum
+        objeto2.maiorDivisivelPorMenor = maiorDivisivelPorMenor
+        objeto2.diferenca = diferenca
+        return objeto2
+    }
 }
 
 // EXERCÍCIO 08
