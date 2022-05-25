@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Vendas</title>
+</head>
+<body>
+    <header class="topo">
+        <h1 id="jr">JR Informática</h1>
+    </header>
+
+    <nav class="menu">
+        <a href="index.html">Página Inicial |</a>
+        <a href="vendas.html">Página de Vendas |</a>
+        <a href="hist-vendas.html">Histórico de vendas |</a>
+        <a href="ctrl-estoque.html">Controle de Estoque |</a>
+        <a href="add-produto.html">Adicionar Produto |</a>
+        <a href="funcionarios.html">Funcionários</a>
+    </nav>
+
+    <h2 class="produto-nome">Insira os produtos</h2>
+
+    <form action="" class="vendas">
+        <input type="text" name="produtos" id="" placeholder="Insira os produtos">
+        <button class="produto-botao" >Adicionar</button>
+    </form>
+
+    <h4>Lista de pedidos</h4>
+    <table>
+        <tr>
+            <th>Descrição</th>
+            <th>Preço (R$)</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+        </tr>
+        <tr>
+            <td> Fonte ATX 500w </td>
+            <td> 299.90 </td>
+            <td> 1 </td>
+            <td> 299.90 </td>
+        </tr>
+    </table>
+
+    <h4>Formas de Pagamento</h4>
+    <div>
+        <input type="radio" name="credito" id="credito" checked>
+        <label for="credito">Crédito</label>
+        <br>
+        <input type="radio" name="debito" id="debito">
+        <label for="debito">Débito</label>
+        <br>
+        <input type="radio" name="pix" id="pix">
+        <label for="pix">Pix</label>
+    </div>
+    <button class="produto-botao" >Finalizar Venda</button>
+</body>
+</html>
