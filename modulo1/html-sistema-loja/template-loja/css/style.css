@@ -1,0 +1,138 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* PAGINA INICIAL */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Logo */
+header h1 {
+    display: inline;
+}
+header p {
+    display: inline;
+    margin-left: 55%;
+}
+.topo {
+    background-color: #343746;
+    color: #F1F1EF;
+    padding: 1%;
+    border-bottom: 1px solid #F1F1EF;
+}
+#jr {
+    color: #00D3DC;
+}
+
+
+/* Menu */
+nav {
+    text-align: center;
+}
+.menu {
+    background-color: #343746;
+    padding: 1%;
+}
+.menu a {
+    color: #F1F1EF;
+    font-size: 1.2em;
+    text-decoration: none;
+    margin: 0 8px 0 8px;
+    transition: 0.4s;
+}
+.menu a:hover{
+    color: #00D3DC;
+}
+
+
+/* Sessão */
+main {
+    max-width: 900px;
+    margin: auto;
+}
+main p {
+    text-align: justify;
+    padding-top: 8px;
+}
+main h3 {
+    text-align: center;
+    font-size: 1.5em;
+    padding: 12px;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 32px;
+    border-top: 1px solid #343746;
+}
+footer img {
+    width: 30px;
+    padding: 4px 0;
+}
+
+
+
+/* PAGINA ADICIONAR PRODUTO */
+form label {
+    color: #00D3DC;
+    font-size: 1.5em;
+}
+form input {
+    width: 100%;
+    height: 24px;
+}
+.produto-nome {
+    text-align: center;
+    margin: 22px;
+    color: #00D3DC;
+    font-weight: bold;
+}
+.produto-form {
+    width: 500px;
+    height: 300px;
+    text-align: center;
+    border: 2px solid black;
+    padding: 12px;
+    margin: auto;
+    border-radius: 6px;
+}
+#produto-botao {
+    padding: 8px 28px;
+    margin: 10px;
+    background-image: linear-gradient( 135deg, #00D3DC 10%, #248b94 100%);
+    border: none;
+    color: #F1F1EF;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+
+
+/* PAGINA CONTROLHE DE ESTOQUE */
+table {
+    text-align: center;
+    font-weight: bold;
+    margin: 0 auto;
+}
+table td {
+    width: 20%;
+    border-top: 1px solid black;
+}
+
+
+
+
+/* PAGINA FUNCIONARIOS */
+.funcionarios {
+    text-align: center;
+}
+.funcionarios li {
+    margin: 6px;
+    font-weight: bold;
+}
