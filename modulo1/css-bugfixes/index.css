@@ -34,7 +34,7 @@ div>p:first-child {
 }
 
 div img {
-
+    cursor: pointer;
 }
 
 .botao-amarelo {
@@ -116,6 +116,11 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
+    transition: all 0.3s;
+}
+td button:hover {
+    background-color: #d8bf4e;
+    color: #fff;
 }
 
 .container-do-search {
