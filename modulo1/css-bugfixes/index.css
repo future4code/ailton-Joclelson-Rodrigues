@@ -105,6 +105,7 @@ div:last-child {
 
 table {
     width: 60%;
+    margin: 0 auto;
 }
 table td {
     text-align: center;
