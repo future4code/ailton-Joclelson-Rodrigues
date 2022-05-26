@@ -104,7 +104,9 @@ table {
 table td {
     text-align: center;
 }
-
+td img {
+    width: 75px;
+}
 td button {
     background-color: #fadf63;
     width: 150px;
