@@ -3,10 +3,12 @@
   *  ESTILOS GERAIS 
   *
   **/
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
 
 h2 {
@@ -116,10 +118,12 @@ td button {
     height: 30px;
     border-radius: 5px;
     color: black;
-    transition: all 0.3s;
 }
 td button:hover {
     background-color: #d8bf4e;
+    transition: all 0.3s;
+}
+td button:active {
     color: #fff;
 }
 
