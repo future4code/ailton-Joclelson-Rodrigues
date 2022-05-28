@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/*  Logo */
+.header-inicio {
+    position: relative;
+    border-bottom: 2px solid black;
+}
+.logo {
+    display: inline;
+}
+.logo img {
+    width: 70px;
+    margin: 6px 10px 0px 30px;
+}
+
+
+/* Menu */
+.header-menu {
+    display: inline;
+}
+.header-menu ul {
+    display: inline;
+    position: absolute;
+    right: 0;
+    margin: 16px;
+}
+.header-menu ul li {
+    display: inline;
+    margin: 15px;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+.header-menu ul li:hover {
+    opacity: 0.5;
+}
+.header-menu ul a {
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+
+/* Sobre Mim */
+.main-sobre {
+    max-width: 1000px;
+    margin: auto;
+    position: relative;
+}
+.foto {
+    display: inline-block;
+    margin: 50px;
+}
+.info {
+    display: inline-block;
+    height: 360px;
+    position: absolute;
+    text-align: center;
+    margin-top: 100px;
+}
+.botao {
+    padding: 10px 30px;
+    margin: 22px;
+    border-radius: 8px;
+    border: 2px solid black;
+    background-color: transparent;
+    font-weight: bold;
+    font-size: 1.1em;
+    color: #000;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.botao:hover {
+    opacity: 0.3;
+}
+.botao:active {
+    opacity: 0.9;
+}
+
+
+/* Formação */
+.formacao {
+    position: relative;
+    text-align: center;
+}
+.formacao h2 {
+    margin-top: 50px;
+}
+.sophos {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 16px;
+    margin: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.sophos img {
+    width: 323px;
+}
+.sophos p {
+    text-align: center;
+}
+.sophos p {
+    font-weight: bold;
+}
+
+.unopar {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 16px;
+    margin: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.unopar img {
+    width: 300px;
+}
+.unopar p {
+    font-weight: bold;
+}
+
+.labenu {
+    border: 1px solid black;
+    display: inline-block;
+    padding: 16px;
+    margin: 15px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+.labenu img {
+    width: 300px;
+}
+.labenu p {
+    font-weight: bold;
+}
+
+
+/* Projetos */
+.projetos {
+    margin: auto;
+    text-align: center;
+    max-width: 1000px;
+}
+.projetos h2 {
+    margin-top: 50px;
+}
+.projetos img {
+    width: 500px;
+    margin: 15px;
+    border: 1px solid black;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Habilidades */
+.habilidades {
+    text-align: center;
+    background-color: #F1F1EF;
+}
+.habilidades h2 {
+    margin-top: 50px;
+}
+.hard-skills img {
+    width: 100px;
+    margin: 10px;
+}
+.hard-skills div {
+    display: inline-block;
+}
+.hard-skills p {
+    font-weight: bold;
+}
+
+.soft-skills {
+    text-align: center;
+}
+.soft-skills h3 {
+    margin: 50px;
+}
+.soft-skills ul {
+    padding: 25px;
+}
+.soft-skills ul li {
+    text-align: center;
+    margin: 15px;
+    display: inline;
+    font-weight: bold;
+}
+
+
+/* Formulario */
+.formulario {
+    margin: auto;
+    max-width: 1000px;
+}
+.formulario h3 {
+    padding: 30px;
+    text-align: center;
+}
+.form {
+    display: inline-block;
+    float: left;
+    width: 400px;
+}
+.form input {
+    display: block;
+    padding: 10px 30px;
+    margin: 10px;
+    border-radius: 15px;
+}
+#textarea {
+    padding: 10px;
+    border-radius: 10px;
+}
+.img-formulario {
+    display: inline-block;
+}
+.formulario img {
+    width: 500px;
+    float: right;
+}
