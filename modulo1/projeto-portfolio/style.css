@@ -166,6 +166,7 @@ body {
 }
 .habilidades h2 {
     margin-top: 50px;
+    padding-top: 30px;
 }
 .hard-skills img {
     width: 100px;
@@ -185,7 +186,7 @@ body {
     margin: 50px;
 }
 .soft-skills ul {
-    padding: 25px;
+    padding-bottom: 50px;
 }
 .soft-skills ul li {
     text-align: center;
@@ -201,23 +202,30 @@ body {
     max-width: 1000px;
 }
 .formulario h3 {
-    padding: 30px;
+    padding: 50px;
     text-align: center;
 }
 .form {
     display: inline-block;
     float: left;
-    width: 400px;
+    width: 500px;
+    text-align: center;
 }
 .form input {
-    display: block;
-    padding: 10px 30px;
-    margin: 10px;
+    display: inline;
+    padding: 10px 45px;
+    margin: 15px;
     border-radius: 15px;
 }
 #textarea {
     padding: 10px;
     border-radius: 10px;
+    border: 2px solid black;
+    margin: 15px;
+}
+.form button {
+    display: block;
+    margin: 0 auto;
 }
 .img-formulario {
     display: inline-block;
@@ -225,4 +233,58 @@ body {
 .formulario img {
     width: 500px;
     float: right;
+}
+
+
+/* Footer */
+footer {
+    position: relative;
+    max-width: 1000px;
+    margin: 150px auto;
+    border-top: 1px solid black;
+}
+.informacoes {
+    display: inline-block;
+    width: 500px;
+    position: absolute;
+    left: 0;
+    text-align: center;
+}
+.informacoes h4 {
+    margin: 15px;
+}
+.endereco p {
+    display: inline;
+}
+.telefone {
+    margin: 10px;
+}
+.telefone h4 {
+    display: inline;
+}
+.email {
+    margin: 10px;
+}
+.email h4 {
+    display: inline;
+}
+
+.redes-sociais {
+    display: inline-block;
+    width: 500px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+}
+.redes-sociais h4 {
+    margin: 15px;
+}
+.redes-sociais i {
+    font-size: 2em;
+    margin: 0 5px;
+    color: #000;
+    transition: 0.3s;
+}
+.redes-sociais i:hover {
+    opacity: 0.4;
 }
