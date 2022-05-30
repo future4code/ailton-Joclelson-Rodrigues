@@ -1,0 +1,102 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    height: 8vh;
+    align-items: center;
+    background-color: mediumvioletred;
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+.logo h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+.logo img {
+    width: 30px;
+    margin: 0px 10px 0px 10px;
+}
+button {
+    margin: 0px 10px;
+    padding: 0px 4px;
+}
+
+main {
+    border: 1px solid black;
+    display: flex;
+}
+nav {
+    display: flex;
+    flex-direction: column;
+    background-color: #f2d0e0;
+    width: 20vw;
+    height: 100vh;
+}
+div img {
+    width: 30px;
+    margin: 10px;
+}
+div a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.home {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.produtos {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.carrinho {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.perfil {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+
+section {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+section img {
+    width: 200px;
+}
+.card1, .card2, .card3, .card4,
+.card5, .card6, .card7, .card8{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 300px;
+    width: 200px;
+    margin: 8px;
+    box-shadow: 3px 3px 8px darkgray;
+    cursor: pointer;
+}
+
+
+
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: mediumvioletred;
+    height: 8vh;
+}
