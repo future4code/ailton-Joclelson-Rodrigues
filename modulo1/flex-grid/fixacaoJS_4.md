@@ -10,7 +10,7 @@ function contaOcorrencias(arrayDeNumeros, numeroEscolhido) {
     }
   }
   if(quantidade === 0){
-    return 'Número não encontrado'
+    return "Número não encontrado"
   }else {
     return `O número ${numeroEscolhido} aparece ${quantidade}x`
   }
