@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Labetube | Video 8</title>
+    <title>Labetube | Foguete</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
         *{
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
         }
         .head {
             display: flex;
@@ -36,8 +38,12 @@
             background-color: #a3a3a3;
         }
         video {
-            width: 800px;
+            width: 900px;
+            border: 2px solid rgb(211, 211, 211);
             box-shadow: 3px 3px 5px rgb(116, 116, 116);
+        }
+        .pag-video1 h1 {
+            margin-bottom: 15px;
         }
         .pag-video1 p {
             margin: 15px;
@@ -53,6 +59,20 @@
             color: #fff;
             font-size: 2em;
             margin-left: 10px;
+        }
+        @media screen and (max-width: 900px) {
+            video {
+                width: 100%;
+            }
+            .pag-video1 p {
+                margin: 15px;
+                text-align: center;
+                font-size: 1.5em;
+            }
+            .foot {
+                display: flex;
+                justify-content: center;
+            }
         }
     </style>
 </head>
