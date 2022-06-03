@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labetube | Universo</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        .head {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 8vh;
+            background-color: #EF843A;
+        }
+        .head h3, a {
+            margin: 0px 10px;
+            font-size: 1.4em;
+            text-decoration: none;
+        }
+        .head input {
+            margin: 0px 10px;
+            padding: 5px 0px;
+        }
+        .pag-video1 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 84vh;
+            background-color: #a3a3a3;
+        }
+        video {
+            width: 900px;
+            border: 2px solid rgb(211, 211, 211);
+            box-shadow: 3px 3px 5px rgb(116, 116, 116);
+        }
+        .pag-video1 h1 {
+            margin-bottom: 15px;
+        }
+        .pag-video1 p {
+            margin: 15px;
+            font-size: 1.2em;
+        }
+        .foot {
+            background-color: #323B3E;
+            display: flex;
+            align-items: center;
+            height: 8vh;
+        }
+        .foot h3 {
+            color: #fff;
+            font-size: 2em;
+            margin-left: 10px;
+        }
+        @media screen and (max-width: 900px) {
+            video {
+                width: 100%;
+            }
+            .pag-video1 p {
+                margin: 15px;
+                text-align: center;
+                font-size: 1.5em;
+            }
+            .foot {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="head">
+            <a href="index.html">
+                <h3>FutureTube</h3>
+            </a>
+            <input type="text" placeholder="Buscar">
+        </header>
+        <main>
+            <div class="pag-video1">
+                <h1>Universo</h1>
+                <video src="https://storage.googleapis.com/future-apis.appspot.com/7.mp4" controls autoplay></video>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati est illum fugit saepe iusto dolore dolores voluptatem, quisquam aperiam? Tempore.</p>
+            </div>
+        </main>
+        <footer class="foot">
+            <h3>Oi! Eu moro no footer!</h3>
+        </footer>
+    </div>
+</body>
+</html>
