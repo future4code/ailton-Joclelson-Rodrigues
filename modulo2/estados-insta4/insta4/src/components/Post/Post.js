@@ -6,6 +6,8 @@ import iconeCoracaoPreto from '../../img/favorite.svg'
 import iconeComentario from '../../img/comment_icon.svg'
 import iconeSalvarBranco from '../../img/salvar-branco.svg'
 import iconeSalvarPreto from '../../img/salvar-preto.svg'
+import iconePartilhaBranco from '../../img/partilhar-branco.png'
+import iconePartilhaPreto from '../../img/partilhar-preto.png'
 import {SecaoComentario} from '../SecaoComentario/SecaoComentario'
 
 const PostContainer = styled.div`
@@ -46,7 +48,8 @@ class Post extends React.Component {
     numeroCurtidas: 0,
     comentando: false,
     numeroComentarios: 0,
-    salvar: false
+    salvar: false,
+    compartilhar: false
   }
 
   onClickCurtida = () => {
@@ -64,16 +67,15 @@ class Post extends React.Component {
     }
   }
   onClickSalvar = () => {
-    console.log('salvou')
-    this.setState({
-      salvar: !this.state.salvar
-    })
+    this.setState({salvar: !this.state.salvar})
+  }
+
+  onClickCompartilhar = () => {
+    this.setState({compartilhar: !this.state.compartilhar})
   }
 
   onClickComentario = () => {
-    this.setState({
-      comentando: !this.state.comentando
-    })
+    this.setState({comentando: !this.state.comentando})
   }
 
   aoEnviarComentario = () => {
@@ -94,6 +96,13 @@ class Post extends React.Component {
     let componenteComentario
     if(this.state.comentando) {
       componenteComentario = <SecaoComentario aoEnviar={this.aoEnviarComentario}/>
+    }
+
+    let iconeCompartilhar
+    if(this.state.compartilhar) {
+      iconeCompartilhar = iconePartilhaPreto
+    }else {
+      iconeCompartilhar = iconePartilhaBranco
     }
 
     let iconeSalvar
@@ -123,6 +132,12 @@ class Post extends React.Component {
           onClickIcone={this.onClickComentario}
           valorContador={this.state.numeroComentarios}
         />
+
+        <IconeComContador 
+        icone={iconeCompartilhar}
+        onClickIcone={this.onClickCompartilhar}
+        />
+
         <IconeComContador 
         icone= {iconeSalvar}
         onClickIcone= {this.onClickSalvar}
