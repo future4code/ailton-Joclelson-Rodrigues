@@ -5,31 +5,32 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
 
 const ImputUsuario = styled.input `
   border: none;
-  padding: 8px 6px;
+  padding: 10px 6px;
   width: 17%;
   border-radius: 8px;
   margin: 0 4px;
 `
 const ImputMensagem = styled.input `
   border: none;
-  padding: 8px 16px;
+  padding: 10px 16px;
   border-radius: 8px;
   margin: 0 4px 0 0;
   width: 64%;
 `
 const Botao = styled.button `
-  padding: 8px 0;
+  padding: 10px 0;
   border-radius: 8px;
   border: none;
   width: 15%;
   margin: 0 4px;
+  transition: 0.3s;
   :hover {
     background-color: #007F68;
     cursor: pointer;
     color: #fff
   }
 `
-const Containermsg = styled.div `
+const ContainerMsgEu = styled.div `
   display: flex;
   flex-direction: column;
   width: fit-content;
@@ -39,6 +40,20 @@ const Containermsg = styled.div `
   margin: 10px;
   padding: 12px;
   background-color: #E6FEDA;
+  p{word-break: break-all;}
+`
+const ContainerMsg = styled.div `
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: start;
+  width: fit-content;
+  /* height: fit-content; */
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 10px;
+  padding: 12px;
+  background-color: #fff;
   p{word-break: break-all;}
 `
 
@@ -97,12 +112,21 @@ class App extends Component {
 
   render() {
     const monstraMensagem = this.state.mensagens.map((msg, index) => {
-      return (
-        <Containermsg onDoubleClick={() => this.apagarMensagem(index)} key={index}>
-          <h4>{msg.Usuario}</h4>
-          <p>{msg.Mensagem}</p>
-        </Containermsg>
-      )
+      if(this.state.inputUsuario === 'eu'){
+        return (
+          <ContainerMsgEu onDoubleClick={() => this.apagarMensagem(index)} key={index}>
+            <h4>{msg.Usuario}</h4>
+            <p>{msg.Mensagem}</p>
+          </ContainerMsgEu>
+        )
+      }else {
+        return (
+          <ContainerMsg onDoubleClick={() => this.apagarMensagem(index)} key={index}>
+            <h4>{msg.Usuario}</h4>
+            <p>{msg.Mensagem}</p>
+          </ContainerMsg>
+        )
+      }
     })
 
     return (
