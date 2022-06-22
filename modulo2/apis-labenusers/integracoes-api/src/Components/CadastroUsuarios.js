@@ -1,24 +1,63 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import axios from "axios";
 
 class CadastroUsuarios extends Component {
+  state = {
+    inputNome: "",
+    inputEmail: "",
+  };
+
+  onChangeInputNome = (e) => {
+    this.setState({ inputNome: e.target.value });
+  };
+
+  onChangeInputEmail = (e) => {
+    this.setState({ inputEmail: e.target.value });
+  };
+
+  cadastrarUsuario = () => {
+    const body = {
+      name: this.state.inputNome,
+      email: this.state.inputEmail,
+    };
+    axios
+      .post(
+        "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
+        body,
+        {
+          headers: {
+            Authorization: "joclelson-rodrigues-ailton",
+          },
+        }
+      )
+      .then((response) => {
+        alert("Cadastrado com Sucesso");
+      })
+      .catch((error) => {
+        alert("Erro ao Cadastrar");
+      });
+
+    this.setState({ inputNome: "", inputEmail: "" });
+  };
+
   render() {
     return (
       <Container>
         <h3>Cadastro de Usuários</h3>
 
         <Inputs
-          onChange={this.props.onChangeInputNome}
-          value={this.props.inputNome}
+          onChange={this.onChangeInputNome}
+          value={this.state.inputNome}
           placeholder="Insira o nome"
         />
 
         <Inputs
-          onChange={this.props.onChangeInputEmail}
-          value={this.props.inputEmail}
+          onChange={this.onChangeInputEmail}
+          value={this.state.inputEmail}
           placeholder="Insira o email"
         />
-        <Botao onClick={this.props.cadastrarUsuario}>Cadastrar</Botao>
+        <Botao onClick={this.cadastrarUsuario}>Cadastrar</Botao>
       </Container>
     );
   }

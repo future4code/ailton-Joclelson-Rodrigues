@@ -1,22 +1,11 @@
 import React from "react";
 import CadastroUsuarios from "./Components/CadastroUsuarios";
 import ListaUsuarios from "./Components/ListaUsuarios";
-import axios from "axios";
 import "./App.css";
 
 class App extends React.Component {
   state = {
-    inputNome: "",
-    inputEmail: "",
-    telas: "cadastrarUsuario",
-  };
-
-  onChangeInputNome = (e) => {
-    this.setState({ inputNome: e.target.value });
-  };
-
-  onChangeInputEmail = (e) => {
-    this.setState({ inputEmail: e.target.value });
+    telas: "cadastrarUsuario"
   };
 
   listaUsuario = () => {
@@ -25,32 +14,6 @@ class App extends React.Component {
 
   cadUsuario = () => {
     this.setState({ telas: "cadastrarUsuario" });
-  };
-
-  cadastrarUsuario = () => {
-    const body = {
-      name: this.state.inputNome,
-      email: this.state.inputEmail,
-    };
-    axios
-      .post(
-        "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users",
-        body,
-        {
-          headers: {
-            Authorization: "joclelson-rodrigues-ailton",
-          },
-        }
-      )
-      .then((response) => {
-        alert("Cadastrado com Sucesso");
-      })
-      .catch((error) => {
-        alert("Erro ao Cadastrar");
-      });
-
-    this.setState({ inputNome: "" });
-    this.setState({ inputEmail: "" });
   };
 
   render() {
@@ -67,14 +30,7 @@ class App extends React.Component {
           </nav>
         </header>
         {this.state.telas === "cadastrarUsuario" ? (
-          <CadastroUsuarios
-            cadastrarUsuario={this.cadastrarUsuario}
-            listaUsuario={this.listaUsuario}
-            inputNome={this.state.inputNome}
-            inputEmail={this.state.inputEmail}
-            onChangeInputNome={this.onChangeInputNome}
-            onChangeInputEmail={this.onChangeInputEmail}
-          />
+          <CadastroUsuarios listaUsuario={this.listaUsuario} />
         ) : (
           <ListaUsuarios />
         )}
