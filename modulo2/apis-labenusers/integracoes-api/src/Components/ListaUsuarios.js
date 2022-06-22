@@ -23,11 +23,36 @@ class ListaUsuarios extends Component {
       console.log(error);
     });
 
+  deletarUsuario = (id) => {
+    if (window.confirm("Tem certeza de que deseja deletar?") === true) {
+      axios
+        .delete(
+          `https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/${id}`,
+          {
+            headers: {
+              Authorization: "joclelson-rodrigues-ailton",
+            },
+          }
+        )
+        .then((response) => {
+          const novoUsuario = this.state.usuarios.filter((user) => {
+            return user.id !== id;
+          });
+          this.setState({ usuarios: novoUsuario });
+          alert("Usuario Excluido");
+        })
+        .catch((error) => {
+          alert("Não foi posivel deletar usuario");
+        });
+    }
+  };
+
   render() {
     const listaDeUsuarios = this.state.usuarios.map((usuario) => {
       return (
         <Separar>
-          {usuario.name} <Botao>Excluir</Botao>
+          {usuario.name}{" "}
+          <Botao onClick={() => this.deletarUsuario(usuario.id)}>Excluir</Botao>
         </Separar>
       );
     });
@@ -43,8 +68,7 @@ class ListaUsuarios extends Component {
 
 export default ListaUsuarios;
 
-
-const Container = styled.div `
+const Container = styled.div`
   width: 25%;
   margin: 20px auto;
   display: flex;
@@ -52,12 +76,12 @@ const Container = styled.div `
   gap: 10px;
 `;
 
-const Separar = styled.p `
+const Separar = styled.p`
   display: flex;
   justify-content: space-between;
 `;
 
-const Botao = styled.button `
+const Botao = styled.button`
   padding: 4px;
   background-color: deepskyblue;
   color: white;
@@ -66,7 +90,7 @@ const Botao = styled.button `
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s;
-  :hover{
+  :hover {
     box-shadow: 0 0 4px dodgerblue;
   }
 `;

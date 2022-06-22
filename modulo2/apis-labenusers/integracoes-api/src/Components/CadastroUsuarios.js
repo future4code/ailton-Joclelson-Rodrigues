@@ -1,33 +1,32 @@
-import React, { Component } from 'react'
-import styled from 'styled-components';
+import React, { Component } from "react";
+import styled from "styled-components";
 
 class CadastroUsuarios extends Component {
-
   render() {
     return (
       <Container>
-          <h3>Cadastro de Usuários</h3>
+        <h3>Cadastro de Usuários</h3>
 
-          <Inputs 
+        <Inputs
           onChange={this.props.onChangeInputNome}
           value={this.props.inputNome}
           placeholder="Insira o nome"
-          /> 
+        />
 
-          <Inputs 
+        <Inputs
           onChange={this.props.onChangeInputEmail}
           value={this.props.inputEmail}
           placeholder="Insira o email"
-          />
-          <Botao onClick={this.props.cadastrarUsuario}>Cadastrar</Botao>
+        />
+        <Botao onClick={this.props.cadastrarUsuario}>Cadastrar</Botao>
       </Container>
-    )
+    );
   }
 }
 
 export default CadastroUsuarios;
 
-const Container = styled.div `
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,7 +35,7 @@ const Container = styled.div `
   gap: 20px;
 `;
 
-const Inputs = styled.input `
+const Inputs = styled.input`
   padding: 8px;
   width: 16%;
   border-radius: 6px;
@@ -44,7 +43,7 @@ const Inputs = styled.input `
   outline: none;
 `;
 
-const Botao = styled.button `
+const Botao = styled.button`
   padding: 10px;
   width: 10%;
   background-color: deepskyblue;
@@ -54,7 +53,7 @@ const Botao = styled.button `
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s;
-  :hover{
+  :hover {
     box-shadow: 0 0 4px dodgerblue;
   }
 `;
