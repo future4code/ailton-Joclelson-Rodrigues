@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.App {
+    text-align: center;
+}
+
+header {
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 4px lightgray;
+}
+nav a {
+    margin: 12px;
+    text-decoration: none;
+}
+nav a:hover {
+    color: deepskyblue;
+    transition: all 0.2s;
+}
