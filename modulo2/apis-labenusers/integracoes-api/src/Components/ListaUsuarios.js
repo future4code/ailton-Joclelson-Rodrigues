@@ -8,6 +8,7 @@ class ListaUsuarios extends Component {
     usuarios: [],
     informacoes: [],
     detalhesUsuario: false,
+    inputBusca: ''
   };
 
   exibirDetalhes = async (usuario) => {
@@ -21,22 +22,23 @@ class ListaUsuarios extends Component {
           },
         }
       );
-      console.log(resultado.data);
+
       this.setState({ informacoes: resultado.data });
     } catch (error) {
-      alert("Erro");
+      alert("Erro, tente novamente!");
     }
   };
+
   ocultarDetalhes = () => {
     this.setState({ detalhesUsuario: false });
   };
 
-  componentDidMount() {
-    this.pegarUsuarios();
+  onChangeInputBusca = (e) => {
+    this.setState({inputBusca: e.target.value})
   }
 
-  componentDidUpdate() {
-    
+  componentDidMount() {
+    this.pegarUsuarios();
   }
 
   pegarUsuarios = async () => {
@@ -80,12 +82,32 @@ class ListaUsuarios extends Component {
     }
   };
 
+  buscarUsuario = () => {
+   /*  try{
+      const body = {
+        name: this.state.inputBusca
+      }
+      const resultado = await axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users/search?name=", body , {
+        headers: {
+          Authorization: 'joclelson-rodrigues-ailton'
+        }
+      })
+
+      console.log(resultado)
+
+    }catch (error) {
+      alert("Erro")
+    }  */
+  }
+
   render() {
     const listaDeUsuarios = this.state.usuarios.map((usuario) => {
       return (
         <Separar key={usuario.id} onClick={() => this.exibirDetalhes(usuario)}>
           {usuario.name}{" "}
-          <BotaoExcluir onClick={() => this.deletarUsuario(usuario.id)}>Excluir</BotaoExcluir>
+          <BotaoExcluir onClick={() => this.deletarUsuario(usuario.id)}>
+            Excluir
+          </BotaoExcluir>
         </Separar>
       );
     });
@@ -94,13 +116,21 @@ class ListaUsuarios extends Component {
         <div key={usuario.id}>
           <p>{usuario.name}</p>
           <p>{usuario.email}</p>
-          <BotaoExcluir onClick={() => this.deletarUsuario(usuario.id)}>Excluir</BotaoExcluir>
+          <BotaoExcluir onClick={() => this.deletarUsuario(usuario.id)}>
+            Excluir
+          </BotaoExcluir>
         </div>
       );
     });
     return (
       <Container>
         <h3>Lista de Usuários</h3>
+        <div>
+          <input 
+          onChange={this.onChangeInputBusca}
+          value={this.state.inputBusca} />
+          <button onClick={this.buscarUsuario}>Procurar</button>
+        </div>
         {listaDeUsuarios}
         {this.state.detalhesUsuario && (
           <DetalhesUsuario
@@ -147,10 +177,10 @@ const Botao = styled.button`
   }
 `;
 
-const BotaoExcluir = styled.button `
+const BotaoExcluir = styled.button`
   padding: 4px;
   margin-top: 8px;
-  background-color: #FF7396;
+  background-color: #ff7396;
   color: white;
   border: none;
   border-radius: 6px;
@@ -158,6 +188,6 @@ const BotaoExcluir = styled.button `
   font-weight: bold;
   transition: all 0.2s;
   :hover {
-  box-shadow: 0 0 4px #F87474;
+    box-shadow: 0 0 4px #f87474;
   }
 `;

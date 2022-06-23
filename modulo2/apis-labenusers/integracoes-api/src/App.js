@@ -5,7 +5,7 @@ import "./App.css";
 
 class App extends React.Component {
   state = {
-    telas: "cadastrarUsuario"
+    telas: "cadastrarUsuario",
   };
 
   listaUsuario = () => {

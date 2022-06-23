@@ -1,13 +1,23 @@
 import React from 'react'
 import styled from 'styled-components';
+import EditarUsuario from './EditarUsuario';
 
 class DetalhesUsuario extends React.Component {
+  state = {
+    editarUsuario: false
+  }
+
+  editarUsuarios = () => {
+    this.setState({editarUsuario: true})
+  }
 
   render() {
     return (
       <ContainerDetalhes>
         <h4>Detalhes</h4>
         {this.props.detalheUsuario}
+        <Botao onClick={this.editarUsuarios}>Editar</Botao>
+        { this.state.editarUsuario && <EditarUsuario />}
         <Botao onClick={this.props.ocultarDetalhes}>Fechar</Botao>
       </ContainerDetalhes>
     )
@@ -27,7 +37,7 @@ const ContainerDetalhes = styled.div `
 
 const Botao = styled.button`
   padding: 4px;
-  width: 40%;
+  width: 30%;
   background-color: deepskyblue;
   color: white;
   border: none;
