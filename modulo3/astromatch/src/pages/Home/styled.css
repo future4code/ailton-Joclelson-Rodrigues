@@ -1,0 +1,19 @@
+.pai {
+    background-color: #f5f7fa;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    width: 400px;
+    margin: auto;
+}
+
+.profile {
+    width: 370px;
+    margin: auto;
+}
+
+.profile img {
+    width: 368px;
+}
