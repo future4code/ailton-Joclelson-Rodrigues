@@ -38,9 +38,9 @@ export const PhotoProfile = styled.div`
   color: #eee;
   box-shadow: 0 2px 10px 0 rgba(136, 136, 136, 0.77);
   :hover {
-    transform: rotate(-45deg);
+    /* transform: rotate(-45deg);
     opacity: 0.1;
-    transition: all 0.5s;
+    transition: all 0.5s; */
   }
   .profile {
     width: 100%;
