@@ -57,10 +57,10 @@ function App() {
         "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/joclelson/clear"
       )
       .then((res) => {
-        alert(res);
+        console.log(res);
       })
       .catch((err) => {
-        alert(err);
+        console.log(err);
       });
   };
 
