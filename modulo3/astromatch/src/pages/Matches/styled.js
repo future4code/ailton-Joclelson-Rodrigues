@@ -31,6 +31,7 @@ export const ContainerPai = styled.div`
   margin: auto;
   border-radius: 10px;
   box-shadow: 0 2px 10px 0 rgba(136, 136, 136, 0.77);
+  overflow: auto;
 `;
 
 export const ContainerMatch = styled.div`

@@ -1,6 +1,7 @@
-import React from "react";
-import { Container, Header, PhotoProfile, ButtonsMatch } from "./styled.js";
+import React, { useState } from "react";
+import { Container, Header, PhotoProfile, ButtonsMatch, Match } from "./styled.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import matchIcon from "../../img/match-tinder.gif"
 import {
   faFireFlameCurved,
   faComments,
@@ -11,6 +12,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home(props) {
+
+  const [animation, setAnimation] = useState("")
+
   return (
     <Container>
       <h3>
@@ -27,7 +31,12 @@ export default function Home(props) {
           <FontAwesomeIcon icon={faUser} />
         </div>
       </Header>
-      <PhotoProfile photo={props.profile.photo}>
+      
+      {props.profile && 
+      <PhotoProfile photo={props.profile.photo} animation={animation}>
+        {/* <div>
+          {props.isMatch === true && <Match src={matchIcon} alt="tinder" /> }
+        </div> */}
         <div className="profile">
           <div className="profile-info">
             <h2>{props.profile.name},</h2>
@@ -35,10 +44,11 @@ export default function Home(props) {
           </div>
           <p>{props.profile.bio}</p>
         </div>
-      </PhotoProfile>
+      </PhotoProfile> }
       <ButtonsMatch>
         <div>
-          <FontAwesomeIcon icon={faXmark} onClick={props.dislikeMatch} />
+          <FontAwesomeIcon icon={faXmark} 
+          onClick={() => {props.dislikeMatch(setAnimation)}} />
         </div>
         <div>
           <FontAwesomeIcon icon={faArrowsRotate} onClick={props.clearMatch} />
@@ -46,7 +56,10 @@ export default function Home(props) {
         <div>
           <FontAwesomeIcon
             icon={faHeart}
-            onClick={() => props.likeMatch(props.profile.id)}
+            onClick={() => {
+              setAnimation("right")
+              props.likeMatch(props.profile.id, setAnimation) 
+            }}
           />
         </div>
       </ButtonsMatch>

@@ -29,6 +29,7 @@ export const PhotoProfile = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  object-fit: scale-down;
   margin: auto;
   width: 400px;
   height: 80vh;
@@ -37,11 +38,34 @@ export const PhotoProfile = styled.div`
   align-items: flex-end;
   color: #eee;
   box-shadow: 0 2px 10px 0 rgba(136, 136, 136, 0.77);
-  :hover {
-    /* transform: rotate(-45deg);
-    opacity: 0.1;
-    transition: all 0.5s; */
-  }
+  animation:   ${props => {
+    if (props.animation === "right"){
+    return "right 0.5s  0s"
+    }else if (props.animation === "left"){
+    return "left 0.5s 0s"
+    }else {
+    return ""
+    }
+    }};
+    @keyframes right {
+      from{
+        transform: translate(0) rotate(0);
+      }
+      to {
+        transform: translate(200px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+    @keyframes left {
+      from{
+        transform: translate(0) rotate(0);
+      }
+      to {
+        transform: translate(-200px) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+    
   .profile {
     width: 100%;
     background: rgb(2, 0, 36);
@@ -58,7 +82,7 @@ export const PhotoProfile = styled.div`
     display: flex;
     align-items: center;
     margin: 0 10px;
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
   .profile-info h3 {
     font-weight: lighter;
@@ -67,7 +91,7 @@ export const PhotoProfile = styled.div`
   .profile p {
     text-align: left;
     margin: 6px 10px;
-    font-size: 1.2em;
+    font-size: 1em;
   }
 `;
 
@@ -129,4 +153,8 @@ export const ButtonsMatch = styled.div`
       transition: all 0.3s;
     }
   }
+`;
+
+ export const Match = styled.img `
+  width: 100px;
 `;
