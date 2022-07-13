@@ -10,13 +10,9 @@ export const goAppFormPage = (navigate) => {
   navigate("/trips/application");
 };
 
-export const goAdmHomePage = (navigate) => {
-    navigate("/admin/trips/list")
-}
-
 export const goCreateTripPage = (navigate) => {
-    navigate("/admin/trips/create")
-}
+  navigate("/admin/trips/create");
+};
 
 export const goBack = (navigate) => {
   navigate(-1);
