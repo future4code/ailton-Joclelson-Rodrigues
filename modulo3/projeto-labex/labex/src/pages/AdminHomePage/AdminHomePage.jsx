@@ -10,9 +10,16 @@ import Avatar from "@mui/material/Avatar";
 import { deepPurple } from "@mui/material/colors";
 import Button from "@mui/material/Button";
 import { useRequestData } from "../../Hooks/useRequestData";
+import { useProtectedPage } from "../../Hooks/useProtectedPage"
 
 function AdminHomePage() {
   const navigate = useNavigate();
+
+  useProtectedPage()
+
+  const TripDetailsPage = (id) => {
+    navigate(`/admin/trips/${id}`)
+  }
 
   const listTrips = useRequestData(
     `${BASE_URL}/joclelson-rodrigues-ailton/trips`
@@ -33,7 +40,7 @@ function AdminHomePage() {
       <button onClick={() => goCreateTripPage(navigate)}>Criar Viagem</button>
       {listTrips?.map((trip) => {
         return (
-          <ListTrip key={trip.id}>
+          <ListTrip onClick={() => TripDetailsPage(trip.id)} key={trip.id}>
             {trip.name}
             <IconButton aria-label="delete" size="large">
               <DeleteIcon />

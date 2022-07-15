@@ -1,35 +1,24 @@
 import React from "react";
+import axios from "axios";
+
+import useForm from "../../Hooks/useForm";
 import { useNavigate } from "react-router-dom";
 import { goBack } from "../../routes/coordinator";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import { ContainerDad, ContainerLogin, ContainerButtons } from "./styled";
-import { useState } from "react";
-import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
+import { ContainerDad, ContainerLogin, ContainerButtons } from "./styled";
+
+import logoLabeX from "../../assets/img/LabeX.png";
+
 
 function LoginPage() {
   const navigate = useNavigate();
-  const [inputEmail, setInputEmail] = useState("");
-  const [inputPassword, setInputPassword] = useState("");
 
-  const handleChangeEmail = (e) => {
-    setInputEmail(e.target.value);
-  };
+  const { form, onChange, cleanFields } = useForm({ email: "", password: "" })
 
-  const handleChangPassword = (e) => {
-    setInputPassword(e.target.value);
-  };
-
-  const goAdmHomePage = () => {
-    const body = {
-      email: inputEmail,
-      password: inputPassword,
-    };
+  const goAdmHomePage = (event) => {
+    event.preventDefault();
     axios
-      .post(`${BASE_URL}/joclelson-rodrigues-ailton/login`, body)
+      .post(`${BASE_URL}/joclelson-rodrigues-ailton/login`, form)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         navigate("/admin/trips/list");
@@ -37,46 +26,37 @@ function LoginPage() {
       .catch((err) => {
         console.log(err);
       });
+    cleanFields();
   };
 
   return (
     <ContainerDad>
-      <ContainerLogin>
-        <h1>Pagina Login</h1>
-        <TextField
-          id="outlined-basic"
-          label="E-mail"
-          variant="outlined"
-          size="small"
-          onChange={handleChangeEmail}
-          required
-        />
-        <TextField
-          id="outlined-basic"
-          label="Senha"
-          type="password"
-          variant="outlined"
-          size="small"
-          onChange={handleChangPassword}
-          required
-        />
-      </ContainerLogin>
-      <ContainerButtons>
-        <Button
-          onClick={() => goBack(navigate)}
-          variant="contained"
-          startIcon={<ArrowBackIcon />}
-        >
-          Voltar
-        </Button>
-        <Button
-          onClick={() => goAdmHomePage()}
-          variant="contained"
-          endIcon={<AccountCircleIcon />}
-        >
-          Entrar
-        </Button>
-      </ContainerButtons>
+      <form onSubmit={goAdmHomePage}>
+        <ContainerLogin>
+          <img src={logoLabeX} alt={"logo labex"} />
+
+          <input
+            onChange={onChange}
+            name={"email"}
+            value={form.email}
+            placeholder="E-mail"
+            required
+            type={"email"}
+          />
+
+          <input
+            onChange={onChange}
+            name={"password"}
+            value={form.password}
+            placeholder="Senha"
+            required
+          />
+        </ContainerLogin>
+        <ContainerButtons>
+          <button>ENTRAR</button>
+        </ContainerButtons>
+      </form>
+          <button onClick={() => goBack(navigate)}>Voltar</button>
     </ContainerDad>
   );
 }

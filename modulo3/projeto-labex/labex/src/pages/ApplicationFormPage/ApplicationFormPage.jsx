@@ -1,81 +1,72 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { goBack } from "../../routes/coordinator";
-import TextField from "@mui/material/TextField";
-import MenuItem from "@mui/material/MenuItem";
-import Select from "@mui/material/Select";
-import Button from "@mui/material/Button";
-import SendIcon from "@mui/icons-material/Send";
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import useForm from "../../Hooks/useForm";
 import { ContainerCad } from "./styled";
+import { listCountries } from "../../components/listCountries";
+import { useRequestData } from "../../Hooks/useRequestData";
+import { BASE_URL } from "../../constants/urls"
 
 function ApplicationFormPage() {
   const navigate = useNavigate();
-  const [selectTravel, setSelectTravel] = useState("");
-  const [selectCountry, setSelectCountry] = useState("");
 
-  const handleChangeTravel = (e) => {
-    setSelectTravel(e.target.value);
-  };
-
-  const handleChangeCountry = (e) => {
-    setSelectCountry(e.target.value);
-  };
+  const { form, onChange, cleanFields } = useForm({
+    name: "",
+    age: "",
+    applicationText: "",
+    profession: "",
+    country: "",
+  });
+  
+  const tripSelect = useRequestData(`${BASE_URL}/joclelson-rodrigues-ailton/trips`)
 
   return (
     <>
       <ContainerCad>
         <h1>Inscreva-se para uma viagem</h1>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Escolha uma Viagem"
-          value={selectTravel}
-          size="small"
-          onChange={handleChangeTravel}
-        >
-          <MenuItem value="escolha uma viagem">Escolha uma Viagem</MenuItem>
-          <MenuItem value="">Escolha uma Viagem</MenuItem>
-          <MenuItem value="">Escolha uma Viagem</MenuItem>
-        </Select>
+        <form>
+        <select onChange={onChange} value={""} name={""}>
+          <option>Escolha uma viagem</option>
+          {tripSelect?.map((count) => {
+            return <option>{count.name}</option>;
+          })}
+        </select>
 
-        <TextField required id="outlined-required" label="Nome" size="small" />
-
-        <TextField required id="outlined-required" label="Idade" size="small" />
-
-        <TextField
-          required
-          id="outlined-required"
-          label="Texto de candidatura"
-          size="small"
+        <input
+          value={form.name}
+          onChange={onChange}
+          name={"name"}
+          placeholder="Nome"
         />
-
-        <TextField
-          required
-          id="outlined-required"
-          label="Profissão"
-          size="small"
+        <input
+          value={form.age}
+          onChange={onChange}
+          name={"age"}
+          placeholder="Idade"
         />
+        <input
+          value={form.applicationText}
+          onChange={onChange}
+          name={"applicationText"}
+          placeholder="Texto de Candidatura"
+        />
+        <input
+          value={form.profession}
+          onChange={onChange}
+          name={"profession"}
+          placeholder="Profissão"
+        />
+        <select onChange={onChange} value={form.country} name={"country"}>
+          <option>Escolha um pais</option>
+          {listCountries.map((count) => {
+            return <option>{count}</option>;
+          })}
+        </select>
 
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Selecione um Pais"
-          value={selectCountry}
-          size="small"
-          onChange={handleChangeCountry}
-        >
-          <MenuItem value="Brasil">Brasil</MenuItem>
-          <MenuItem value="Argentina">Argentina</MenuItem>
-          <MenuItem value="Selecione">Selecione</MenuItem>
-        </Select>
+        <button>Enviar</button>
+        </form>
       </ContainerCad>
-      <Button onClick={() => goBack(navigate)} variant="contained" startIcon={<ArrowBackIcon/>}>
-        Voltar
-      </Button>
-      <Button variant="contained" endIcon={<SendIcon />}>
-        Enviar
-      </Button>
+      <button onClick={() => goBack(navigate)}>Voltar</button>
     </>
   );
 }
