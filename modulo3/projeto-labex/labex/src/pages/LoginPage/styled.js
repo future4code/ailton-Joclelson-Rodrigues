@@ -12,7 +12,22 @@ export const ContainerDad = styled.div `
     justify-content: center;
     align-items: center;
     box-shadow: 0 0 4px lightgray;
-    background-color: #fff;
+    @media (max-width: 600px){
+        width: 90%;        
+    }
+    button {
+        width: 45%;
+        padding: 10px;
+        background-color: transparent;
+        border: 1px solid #22A7F2;
+        border-radius: 6px;
+        font-weight: bold;
+        color: #22A7F2;
+        :hover {
+            cursor: pointer;
+            box-shadow: 0 0 4px lightgray;
+        }
+    }
 `;
 
 export const ContainerLogin = styled.div `
@@ -24,6 +39,7 @@ export const ContainerLogin = styled.div `
     gap: 20px;
     img {
         width: 150px;
+        margin: 18px;
     }
     input {
         padding: 12px;

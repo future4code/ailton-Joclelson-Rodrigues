@@ -1,29 +1,57 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { goCreateTripPage, goBack } from "../../routes/coordinator";
+import { goCreateTripPage } from "../../routes/coordinator";
 import { BASE_URL } from "../../constants/urls";
-import { Header, ListTrip } from "./styled";
-import IconButton from "@mui/material/IconButton";
-import DeleteIcon from "@mui/icons-material/Delete";
-import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import { Header, CreateTrip, ListTrip } from "./styled";
 import Avatar from "@mui/material/Avatar";
 import { deepPurple } from "@mui/material/colors";
-import Button from "@mui/material/Button";
 import { useRequestData } from "../../Hooks/useRequestData";
-import { useProtectedPage } from "../../Hooks/useProtectedPage"
+import { useProtectedPage } from "../../Hooks/useProtectedPage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faRightFromBracket,
+  faCirclePlus,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
+import Loading from "../../components/Loading"
 
 function AdminHomePage() {
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
-  useProtectedPage()
+  useProtectedPage();
 
   const TripDetailsPage = (id) => {
-    navigate(`/admin/trips/${id}`)
-  }
+    navigate(`/admin/trips/${id}`);
+  };
+  
 
-  const listTrips = useRequestData(
-    `${BASE_URL}/joclelson-rodrigues-ailton/trips`
-  );
+  const [listTrips, removeLoading] = useRequestData(`${BASE_URL}/trips`);
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const deleteTrip = (id) => {
+    if (window.confirm("Deseja excluir essa viagem ?") === true){
+        axios
+          .delete(`${BASE_URL}/trips/${id}`, {
+            headers: {
+              auth: token,
+            },
+          })
+          .then((res) => {
+            console.log(res);
+            
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+    
+  };
 
   return (
     <div>
@@ -31,23 +59,34 @@ function AdminHomePage() {
         <h2>Painel Administrativo</h2>
         <div>
           <Avatar sx={{ bgcolor: deepPurple[500] }}>JR</Avatar>
-          <Button variant="outlined" endIcon={<ExitToAppIcon />}>
-            Sair
-          </Button>
+          <FontAwesomeIcon
+            onClick={logout}
+            id="buttonLogout"
+            icon={faRightFromBracket}
+          />
         </div>
       </Header>
-      <button onClick={() => goBack(navigate)}>Voltar</button>
-      <button onClick={() => goCreateTripPage(navigate)}>Criar Viagem</button>
+      <CreateTrip>
+        <FontAwesomeIcon
+          id="buttonCreate"
+          onClick={() => goCreateTripPage(navigate)}
+          icon={faCirclePlus}
+        />
+      </CreateTrip>
+
       {listTrips?.map((trip) => {
         return (
-          <ListTrip onClick={() => TripDetailsPage(trip.id)} key={trip.id}>
-            {trip.name}
-            <IconButton aria-label="delete" size="large">
-              <DeleteIcon />
-            </IconButton>
+          <ListTrip key={trip.id}>
+            <p onClick={() => TripDetailsPage(trip.id)}>{trip.name}</p>
+            <FontAwesomeIcon
+              onClick={() => deleteTrip(trip.id)}
+              id="buttonTrash"
+              icon={faTrashCan}
+            />
           </ListTrip>
         );
       })}
+      {!removeLoading && <Loading />}
     </div>
   );
 }

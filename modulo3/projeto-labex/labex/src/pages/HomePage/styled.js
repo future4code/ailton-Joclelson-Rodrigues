@@ -9,6 +9,11 @@ export const ContainerImg = styled.div `
     width: 50vw;
     height: 100vh;
     background-image: url(${(props) => props.walpperInic});
+    background-size: cover;
+
+    @media (max-width: 600px){
+        display: none;
+    }
 `;
 
 export const ContainerAdm = styled.div `
@@ -24,4 +29,8 @@ export const ContainerAdm = styled.div `
         width: 300px;
         margin: 18px;
     }
+    @media (max-width: 600px){
+        width: 100%;        
+    }
 `;
+

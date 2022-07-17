@@ -2,8 +2,14 @@ export const goHomePage = (navigate) => {
   navigate("/trips/list");
 };
 
+const token = localStorage.getItem('token')
+
 export const goLoginPage = (navigate) => {
-  navigate("/login");
+  if(token === null){
+    navigate("/login");
+  }else {
+    navigate("/admin/trips/list")
+  }
 };
 
 export const goAppFormPage = (navigate) => {

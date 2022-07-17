@@ -18,7 +18,7 @@ function LoginPage() {
   const goAdmHomePage = (event) => {
     event.preventDefault();
     axios
-      .post(`${BASE_URL}/joclelson-rodrigues-ailton/login`, form)
+      .post(`${BASE_URL}/login`, form)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         navigate("/admin/trips/list");
@@ -40,8 +40,8 @@ function LoginPage() {
             name={"email"}
             value={form.email}
             placeholder="E-mail"
-            required
             type={"email"}
+            required
           />
 
           <input

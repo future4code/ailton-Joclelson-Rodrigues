@@ -6,18 +6,21 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import Button from "@mui/material/Button";
 import { useRequestData } from "../../Hooks/useRequestData";
 import { BASE_URL } from "../../constants/urls";
-import { ContainerTrips, ListTrip } from "./styled"
+import { ContainerDad, ContainerTrips, ListTrip } from "./styled"
+import Loading from "../../components/Loading"
 
 function ListTripsPage() {
   const navigate = useNavigate();
 
-  const listTrips = useRequestData(
-    `${BASE_URL}/joclelson-rodrigues-ailton/trips`
+  const [listTrips, removeLoading] = useRequestData(
+    `${BASE_URL}/trips`
   );
 
   return (
-    <div>
-      <h1>Lista de Viagem</h1>
+    <ContainerDad>
+      
+      <h2>Lista de Viagem</h2>
+      <div>
       <Button
         onClick={() => goBack(navigate)}
         variant="contained"
@@ -32,11 +35,12 @@ function ListTripsPage() {
       >
         Inscrever-se
       </Button>
+      </div>
       <ContainerTrips>
       {listTrips?.map((trip) => {
         return (
           <ListTrip key={trip.id}>
-            <p>{`Nome: ${trip.name}`}</p>
+            <p>{`Nome:${trip.name}`}</p>
             <p>{`Descrição: ${trip.description}`}</p>
             <p>{`Planeta: ${trip.planet}`}</p>
             <p>{`Duração: ${trip.durationInDays} dias`}</p>
@@ -44,8 +48,9 @@ function ListTripsPage() {
           </ListTrip>
         );
       })}
+      {!removeLoading && <Loading />}
       </ContainerTrips>
-    </div>
+    </ContainerDad>
   );
 }
 export default ListTripsPage;

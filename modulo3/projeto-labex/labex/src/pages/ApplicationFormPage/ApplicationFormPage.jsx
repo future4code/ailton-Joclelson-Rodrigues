@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { goBack } from "../../routes/coordinator";
 import useForm from "../../Hooks/useForm";
-import { ContainerCad } from "./styled";
+import axios from "axios";
+import { ContainerForm, ContainerDad } from "./styled";
 import { listCountries } from "../../components/listCountries";
 import { useRequestData } from "../../Hooks/useRequestData";
-import { BASE_URL } from "../../constants/urls"
+import { BASE_URL } from "../../constants/urls";
+
 
 function ApplicationFormPage() {
   const navigate = useNavigate();
@@ -16,19 +18,34 @@ function ApplicationFormPage() {
     applicationText: "",
     profession: "",
     country: "",
+    trip: ""
   });
   
-  const tripSelect = useRequestData(`${BASE_URL}/joclelson-rodrigues-ailton/trips`)
+
+  const applyToTrip = (event) => {
+    event.preventDefault();
+    axios.post(`${BASE_URL}/trips/${form.trip}/apply`, form)
+    .then((res) => {
+      cleanFields()
+      alert("Sua inscrição foi enviada!")
+    })
+    .catch((err) => {alert(err)})
+  }
+
+  const [tripSelect, ] = useRequestData(
+    `${BASE_URL}/trips`
+  );
 
   return (
-    <>
-      <ContainerCad>
-        <h1>Inscreva-se para uma viagem</h1>
-        <form>
-        <select onChange={onChange} value={""} name={""}>
+    <ContainerDad>
+      <h2>Inscreva-se para uma viagem</h2>
+      <ContainerForm onSubmit={applyToTrip}>
+        <select onChange={onChange} value={form.trip} name={"trip"}>
           <option>Escolha uma viagem</option>
           {tripSelect?.map((count) => {
-            return <option>{count.name}</option>;
+            return <option value={count.id}>
+              {count.name}
+              </option>;
           })}
         </select>
 
@@ -37,24 +54,36 @@ function ApplicationFormPage() {
           onChange={onChange}
           name={"name"}
           placeholder="Nome"
+          pattern="^.{3,}"
+          title="O nome deve ter no minimo 3 letras"
+          required
         />
         <input
           value={form.age}
           onChange={onChange}
           name={"age"}
           placeholder="Idade"
+          type={"number"}
+          min={"18"}
+          required
         />
         <input
           value={form.applicationText}
           onChange={onChange}
           name={"applicationText"}
           placeholder="Texto de Candidatura"
+          pattern="^.{15,}"
+          title="A resposta deve ter no minimo 30 letras"
+          required
         />
         <input
           value={form.profession}
           onChange={onChange}
           name={"profession"}
           placeholder="Profissão"
+          pattern="^.{6,}"
+          title="A profissão deve ter no minimo 10 letras"
+          required
         />
         <select onChange={onChange} value={form.country} name={"country"}>
           <option>Escolha um pais</option>
@@ -64,10 +93,9 @@ function ApplicationFormPage() {
         </select>
 
         <button>Enviar</button>
-        </form>
-      </ContainerCad>
+      </ContainerForm>
       <button onClick={() => goBack(navigate)}>Voltar</button>
-    </>
+    </ContainerDad>
   );
 }
 export default ApplicationFormPage;
