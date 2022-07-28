@@ -7,6 +7,9 @@ export const ContainerLogo = styled.div `
     img {
         max-width: 180px;
     }
+    p {
+        margin: 12px 0;
+    }
 `;
 
 export const ContainerForm =styled.form `
@@ -57,7 +60,7 @@ export const ContainerForm =styled.form `
         box-shadow: 0px 0px 14px -7px #f09819;
         :hover {
             background-position: right center;
-            color: #fff;
+            /* color: #fff; */
             cursor: pointer;
         }
         :active {
@@ -65,3 +68,25 @@ export const ContainerForm =styled.form `
             }
     }
 `;
+
+export const ContainerButton = styled.div `
+    width: 300px;
+    margin: auto;
+    border-top: 1px solid #FF5204;
+    button {
+        width: 100%;
+        background-color: transparent;
+        color: #FF5204;
+        padding: 8px;
+        margin: 12px 0;
+        border-radius: 5px;
+        font-weight: bold;
+        border: none;
+        transition: 0.2s ease-in-out;
+        :hover {
+            /* box-shadow: 0 0 3px #FF5204; */
+            border: 1px solid #FF5204;
+            cursor: pointer;
+        }
+    }
+`
