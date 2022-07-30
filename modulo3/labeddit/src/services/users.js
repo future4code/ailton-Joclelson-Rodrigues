@@ -21,6 +21,7 @@ export const goSignUp = (body, clear, navigate) => {
         navigate("/feed")
     })
     .catch((err) => {
+        console.log(err)
         alert("Erro ao Cadastrar")
     })
 }

@@ -7,7 +7,7 @@ import Loading from "../../components/Loading/Loading"
 import { useNavigate } from "react-router-dom";
 import { goToPostPage } from '../../routes/coordinator'
 import { BASE_URL } from "../../constants/urls"
-import { creatPost, postVote } from "../../services/posts"
+import { creatPost, postVotePositive, postVoteNegative } from "../../services/posts"
 
 import arrowUp from "../../assets/img/arrow-up.png"
 import arrowLow from "../../assets/img/arrow-low.png"
@@ -23,6 +23,7 @@ const FeedPage = () => {
     const { form, onChange, clean } = useForm({title: "", body: ""})
     
     const [feedPost, isLoading ]  = useRequestData([], `${BASE_URL}/posts`)
+    console.log(feedPost.commentCount)
 
     const onSubmitForm = (event) => {
         event.preventDefault()
@@ -30,11 +31,11 @@ const FeedPage = () => {
     }
 
     const votePositive = (id, vote) => {
-        const body = {
-            "direction": vote
-        }
-        postVote(id, body)
-        console.log(id , body)
+        postVotePositive(id, vote)
+    }
+
+    const voteNegative = (id, vote) => { 
+        postVoteNegative(id, vote)
     }
 
     const goToDetails = (id) => {
@@ -50,7 +51,7 @@ const FeedPage = () => {
                     <div id="arrow">
                         <img onClick={() => votePositive(post.id, 1)} id="up" src={arrowUp}  alt={"arrow up"}/>
                         <p>{post.voteSum}</p>
-                        <img src={arrowLow} alt={"arrow low"} />
+                        <img onClick={() => voteNegative(post.id, -1)} src={arrowLow} alt={"arrow low"} />
                     </div>
                     <div onClick={() => goToDetails(post.id)} id="comment">
                         <img src={comment} />
@@ -64,7 +65,7 @@ const FeedPage = () => {
     return (
         <div>
             <Header />
-            <ContainerPost>
+            <ContainerPost onSubmit={onSubmitForm}>
                 <input 
                 onChange={onChange}
                 value={form.title}
@@ -80,7 +81,7 @@ const FeedPage = () => {
                 placeholder="Escreva seu post..." 
                 rows={"4"} 
                 cols={"4"} />
-                <button onClick={onSubmitForm}>Postar</button>
+                <button>Postar</button>
             </ContainerPost>
             <ContainerFeed>
                 { !isLoading ? feedPostCard : <Loading/> }
