@@ -134,6 +134,7 @@ class ListaUsuarios extends Component {
         {listaDeUsuarios}
         {this.state.detalhesUsuario && (
           <DetalhesUsuario
+            usuarios={this.state.informacoes}
             detalheUsuario={detalheUsuario}
             ocultarDetalhes={this.ocultarDetalhes}
           />

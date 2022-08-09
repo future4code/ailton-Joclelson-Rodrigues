@@ -17,7 +17,7 @@ class DetalhesUsuario extends React.Component {
         <h4>Detalhes</h4>
         {this.props.detalheUsuario}
         <Botao onClick={this.editarUsuarios}>Editar</Botao>
-        { this.state.editarUsuario && <EditarUsuario />}
+        { this.state.editarUsuario && <EditarUsuario usuarios={this.props.usuarios} />}
         <Botao onClick={this.props.ocultarDetalhes}>Fechar</Botao>
       </ContainerDetalhes>
     )
