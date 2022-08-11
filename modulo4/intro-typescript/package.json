@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "typescript": "^4.7.4"
+  },
+  "name": "intro-typescript",
+  "version": "1.0.0",
+  "description": "introdução a typescript",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "start": "tsc && node ./build/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "typescript"
+  ],
+  "author": "Joclelson Rodrigues",
+  "license": "ISC"
+}
