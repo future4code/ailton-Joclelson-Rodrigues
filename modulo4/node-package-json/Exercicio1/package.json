@@ -1,0 +1,16 @@
+{
+  "name": "aula-node",
+  "version": "1.0.0",
+  "description": "iniciando back end com node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./index.js"
+  },
+  "keywords": [
+    "node",
+    "back end"
+  ],
+  "author": "Joclelson Rodrigues",
+  "license": "ISC"
+}
