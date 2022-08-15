@@ -6,7 +6,7 @@ enum SETORES {
 type colaboradores = {
     nome: string,
     salário: number,
-    setor: string,
+    setor: SETORES,
     presencial: boolean
 }
 
@@ -20,9 +20,9 @@ const array:colaboradores[] = [
 	{ nome: "Paola" ,salário: 3500, setor: SETORES.MARKETING, presencial: true }
 ]
 
-function filtrarPessoas(array:colaboradores[]) {
-    const res = array.filter((pessoa) => {
-        return pessoa.setor === "marketing" && pessoa.presencial === true
+function filtrarPessoas(array:colaboradores[]):colaboradores[] {
+    const res:colaboradores[] = array.filter((pessoa) => {
+        return pessoa.setor === SETORES.MARKETING && pessoa.presencial === true
     })
     return res
 }

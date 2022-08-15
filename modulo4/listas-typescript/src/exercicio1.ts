@@ -1,7 +1,7 @@
 function checastring(nome:string, data:string) {
 
-    const res = data.split("/")
+    const [dia, mes, ano] = data.split("/")
 
-    console.log(`Olá me chamo ${nome}, nasci no dia ${res[0]} do mês de ${res[1]} do ano de ${res[2]}` )
+    console.log(`Olá me chamo ${nome}, nasci no dia ${dia} do mês de ${mes} do ano de ${ano}` )
 }
 // checastring("Joclelson", "11/07/1992")
