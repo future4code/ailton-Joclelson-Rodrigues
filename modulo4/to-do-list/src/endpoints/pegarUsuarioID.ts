@@ -7,6 +7,7 @@ const pegarUsuarioID = async (req: Request, res: Response) => {
     const usuario = await selecionarUsuarioID(id);
     if (!usuario) {
       res.status(404).send({ message: "Usuário não encontrado" });
+      return;
     }
     res.status(200).send({
       id: usuario.id,
