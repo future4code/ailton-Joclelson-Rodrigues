@@ -4,11 +4,11 @@ import { products } from "../types";
 
 const postProducts = async (req: Request, res: Response): Promise<void> => {
   try {
-    const { name, price, image_url } = req.body;
+    const { name, price, image_url }: products = req.body;
     let id = Math.floor(Date.now() * Math.random()).toString(36);
-    console.log(id);
+
     if (!name || !price || !image_url) {
-      throw new Error("Insira dados validos");
+      throw new Error("Preencha os campos nome, preço e imagem!");
     }
     const products: products = {
       id,
@@ -17,7 +17,8 @@ const postProducts = async (req: Request, res: Response): Promise<void> => {
       image_url,
     };
     await connection("labecommerce_products").insert(products);
-    res.status(201).send("Produto adicionado com sucesso!");
+
+    res.status(201).send(`Produto ${name} foi adicionado com sucesso!`);
   } catch (error: any) {
     res.status(401).send({ message: error.message });
   }

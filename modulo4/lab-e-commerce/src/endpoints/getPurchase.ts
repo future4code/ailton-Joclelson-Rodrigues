@@ -7,9 +7,9 @@ const getPurchase = async (req: Request, res: Response) => {
 
     const result = await connection.raw(`
     SELECT labecommerce_purchases.id, labecommerce_users.name, labecommerce_products.name, quantity, price, total_price, image_url 
-	FROM labecommerce_purchases
-	JOIN labecommerce_users on user_id = labecommerce_users.id
-	JOIN labecommerce_products on product_id = labecommerce_products.id
+    FROM labecommerce_purchases
+    JOIN labecommerce_users on user_id = labecommerce_users.id
+    JOIN labecommerce_products on product_id = labecommerce_products.id
     WHERE user_id = ${userID};
     `);
 

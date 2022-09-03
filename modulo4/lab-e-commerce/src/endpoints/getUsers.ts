@@ -4,8 +4,11 @@ import { connection } from "../data/connection";
 const getUsers = async (req: Request, res: Response) => {
   try {
     const result = await connection("labecommerce_users");
+
     if (result.length) {
       res.status(200).send(result);
+    } else {
+      throw new Error("Não há usuários cadastrados");
     }
   } catch (error: any) {
     res.status(401).send({ message: error.message });

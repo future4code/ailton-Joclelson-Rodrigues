@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { connection } from "../data/connection";
-import { users } from "../types";
+import { user } from "../types";
 
 const postUsers = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -9,9 +9,9 @@ const postUsers = async (req: Request, res: Response): Promise<void> => {
     let id: string = String(Date.now());
 
     if (!name || !email || !password) {
-      throw new Error("Insira dados validos");
+      throw new Error("Preencha os campos nome, email e senha!");
     }
-    const newUser: users = {
+    const newUser: user = {
       id,
       name,
       email,
@@ -19,7 +19,7 @@ const postUsers = async (req: Request, res: Response): Promise<void> => {
     };
     await connection("labecommerce_users").insert(newUser);
 
-    res.status(201).send("Usuário criado com sucesso!");
+    res.status(201).send(`O usuário ${name} foi criado com sucesso!`);
   } catch (error: any) {
     res.status(401).send({ message: error.message });
   }
