@@ -1,0 +1,25 @@
+POST http://localhost:3003/user
+Content-Type: application/json
+
+{
+    "name": "Chico",
+    "email": "chico51@gmail.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:3003/users
+
+###
+
+POST http://localhost:3003/products
+Content-Type: application/json
+
+{
+    "name": "Mouse Gamer",
+    "price": 200.40,
+    "image_url": "https://www.oficinadosbits.com.br/fotos/extragrande/33216fe1/mouse-gamer-redragon-predator-8000dpi-chroma-rgb-9-botoes-m612-rgb.jpg"
+}
+
+###
+GET http://localhost:3003/products?search=&order=
