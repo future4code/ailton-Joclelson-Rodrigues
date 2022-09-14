@@ -1,0 +1,23 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "Fifi",
+    "email": "figa@gmail.com",
+    "password": "fifi",
+    "role": "normal"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "figa@gmail.com",
+    "password": "fifi"
+}
+
+###
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ4YTkwNmY5LTU1MzMtNGM2Zi05Y2ZhLWViYWFkMmZhZTExYyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjMxMTAwOTcsImV4cCI6MTY2MzExMzY5N30.4PK9M9nkiFF9gdkocpzCU5IN5sNbHFKDQ50TnVjT7k8
