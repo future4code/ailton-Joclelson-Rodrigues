@@ -1,0 +1,22 @@
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "name": "",
+    "email": "chico@gmail.com",
+    "password": "654321"
+}
+
+###
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "jackson169@gmail.com",
+    "password": "123456"
+}
+
+###
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjE2NjIwNTg5Nzg2MjkiLCJpYXQiOjE2NjMwMjExNjcsImV4cCI6MTY2MzAyNDc2N30.SsLmu-D5iRoGVV_Ek9MRWxqnyDNjzKXwwCWSFetsl7YsdErfssY
