@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import UserData from "../data/UserData";
 import FieldsEmptyError from "../error/FieldsEmptyError";
+import UnauthorizedUser from "../error/UnauthorizedUser";
 import UserCredentialError from "../error/UserCredentialError";
 import UserRegisteredError from "../error/UserRegisteredError";
 import UserUnRegisteredError from "../error/UserUnRegisteredError";
@@ -85,6 +86,50 @@ class User {
       const profileData = await useData.getProfile(authenticator.id);
 
       res.status(200).send(profileData);
+    } catch (error: any) {
+      res.status(res.statusCode || 500).send({ message: error.message });
+    }
+  }
+
+  public async userProfile(req: Request, res: Response) {
+    try {
+      const id = req.params.id;
+      const auth = req.headers.authorization as string;
+
+      const authenticator = new Authenticator().verifyToken(auth) as any;
+      if (!authenticator) {
+        throw new UnauthorizedUser();
+      }
+
+      const useData = new UserData();
+      const profileData = await useData.getProfile(id);
+
+      res.status(200).send(profileData);
+    } catch (error: any) {
+      res.status(res.statusCode || 500).send({ message: error.message });
+    }
+  }
+
+  public async follow(req: Request, res: Response) {
+    try {
+      const userToFollowId = req.body.userToFollowId;
+      const auth = req.headers.authorization as string;
+
+      if (!auth) {
+        throw new FieldsEmptyError();
+      }
+
+      const authenticator = new Authenticator().verifyToken(auth) as any;
+      if (!authenticator) {
+        throw new UnauthorizedUser();
+      }
+      const useData = new UserData();
+      const saveFollow = await useData.saveFollow(
+        authenticator.id,
+        userToFollowId
+      );
+
+      res.status(200).send({ message: saveFollow });
     } catch (error: any) {
       res.status(res.statusCode || 500).send({ message: error.message });
     }

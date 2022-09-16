@@ -20,3 +20,33 @@ Content-Type: application/json
 GET http://localhost:3003/user/profile
 Content-Type: application/json
 Authorization: 
+
+
+###
+GET http://localhost:3003/user/d09d642f-dbc9-49db-a7ff-3afe1dc0484c
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzM0ODUzOSwiZXhwIjoxNjYzMzUyMTM5fQ.Zk0MLuNH4Nb3PXay8X3GZCp-QzMmCJf4FKnK5nHirDg
+
+
+###
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: 
+
+{
+	"title": "Moqueca de Peixe Fácil", 
+	"preparationMode": "asas",
+	"userId": "7c207d6c-ae8c-4323-ab8a-a1118fe3054b"
+}
+
+###
+GET http://localhost:3003/recipe/1663281247635
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzI4NDY2MiwiZXhwIjoxNjYzMjg4MjYyfQ.e7BSppx5aouierS1IYLcHxMAw1uGOfEI4JwIT7YhM6s
+
+###
+POST http://localhost:3003/user/follow
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzM1NzM2NCwiZXhwIjoxNjYzMzYwOTY0fQ.W5y7_t-9T2EZDRbT1B62rSb7VZ2bIR2C1vzF3AmfjpY
+
+{
+	"userToFollowId": "d09d642f-dbc9-49db-a7ff-3afe1dc0484c"
+}

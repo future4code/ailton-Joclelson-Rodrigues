@@ -11,7 +11,7 @@ class UserData extends BaseDatabase {
           email: user.getEmail(),
           password: user.getPassword(),
         })
-        .into("lab_cookenu");
+        .into("lab_cookenu_user");
       return `User: ${user.getName()}, created successfully`;
     } catch (error: any) {
       throw new Error(error.sqlMessage || error.message);
@@ -21,21 +21,44 @@ class UserData extends BaseDatabase {
   async getProfile(id: string): Promise<typeGetProfile> {
     const result = await this.getConnection()
       .select("id", "name", "email")
-      .from("lab_cookenu")
+      .from("lab_cookenu_user")
       .where({ id });
+    const typeProfileData: typeGetProfile = {
+      id: result[0].id,
+      name: result[0].name,
+      email: result[0].email,
+    };
 
-    return result[0];
+    return typeProfileData;
   }
 
   async checkEmail(email: string): Promise<UserModel> {
     try {
       const result = await this.getConnection()
         .select("*")
-        .from("lab_cookenu")
+        .from("lab_cookenu_user")
         .where({ email });
 
       return result[0] && UserModel.typeUserModel(result[0]);
     } catch (error: any) {
+      throw new Error(error.sqlMessage || error.message);
+    }
+  }
+
+  async saveFollow(idSeguir: string, IdSeguido: string): Promise<string> {
+    try {
+      await this.getConnection()
+        .insert({
+          follow_id: idSeguir,
+          followed_id: IdSeguido,
+        })
+        .into("lab_cookenu_followers");
+
+      return `Seguido com sucesso!`;
+    } catch (error: any) {
+      if (error.sqlMessage.includes("Duplicate entry")) {
+        throw new Error("You are following this user");
+      }
       throw new Error(error.sqlMessage || error.message);
     }
   }
