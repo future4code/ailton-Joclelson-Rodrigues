@@ -5,7 +5,7 @@ import UnauthorizedUser from "../error/UnauthorizedUser";
 import UserCredentialError from "../error/UserCredentialError";
 import UserRegisteredError from "../error/UserRegisteredError";
 import UserUnRegisteredError from "../error/UserUnRegisteredError";
-import UserModel from "../model/UserModel";
+import UserModel, { USER_ROLES } from "../model/UserModel";
 import Authenticator from "../services/Authenticator";
 import HashManager from "../services/HashManager";
 import IdGenerator from "../services/IdGenerator";
@@ -13,9 +13,9 @@ import IdGenerator from "../services/IdGenerator";
 class User {
   public async create(req: Request, res: Response) {
     try {
-      const { name, email, password } = req.body;
+      const { name, email, password, role } = req.body;
 
-      if (!name || !email || !password || password.length < 6) {
+      if (!name || !email || !password || !role || password.length < 6) {
         throw new FieldsEmptyError();
       }
 
@@ -25,16 +25,26 @@ class User {
         throw new UserRegisteredError();
       }
 
+      if (
+        role.toUpperCase() !== USER_ROLES.NORMAL &&
+        role.toUpperCase() !== USER_ROLES.ADMIN
+      ) {
+        throw new Error("Invalid user type");
+      }
+
       const id = new IdGenerator().generateId();
 
       const hash = new HashManager();
       const hashPassword = await hash.hash(password);
 
-      const newUser = new UserModel(id, name, email, hashPassword);
+      const newUser = new UserModel(id, name, email, hashPassword, role);
       const saveUser = await useData.saveUser(newUser);
 
       const authenticator = new Authenticator();
-      const token = authenticator.generateToken(newUser.getID());
+      const token = authenticator.generateToken({
+        id: newUser.getID(),
+        role: newUser.getRole(),
+      });
 
       res.status(201).send({ message: saveUser, token });
     } catch (error: any) {
@@ -68,7 +78,10 @@ class User {
         throw new UserCredentialError();
       }
 
-      const token = new Authenticator().generateToken(checkEmail.getID());
+      const token = new Authenticator().generateToken({
+        id: checkEmail.getID(),
+        role: checkEmail.getRole(),
+      });
 
       res.status(200).send({ token });
     } catch (error: any) {
@@ -130,6 +143,53 @@ class User {
       );
 
       res.status(200).send({ message: saveFollow });
+    } catch (error: any) {
+      res.status(res.statusCode || 500).send({ message: error.message });
+    }
+  }
+
+  public async unfollow(req: Request, res: Response) {
+    try {
+      const userToUnfollowId = req.body.userToUnfollowId;
+      const auth = req.headers.authorization as string;
+
+      if (!auth) {
+        throw new FieldsEmptyError();
+      }
+
+      const authenticator = new Authenticator().verifyToken(auth) as any;
+      if (!authenticator) {
+        throw new UnauthorizedUser();
+      }
+      const useData = new UserData();
+      const saveUnFollow = await useData.saveUnFollow(
+        authenticator.id,
+        userToUnfollowId
+      );
+
+      res.status(200).send({ message: saveUnFollow });
+    } catch (error: any) {
+      res.status(res.statusCode || 500).send({ message: error.message });
+    }
+  }
+
+  public async feed(req: Request, res: Response) {
+    try {
+      const token = req.headers.authorization;
+
+      if (!token) {
+        throw new FieldsEmptyError();
+      }
+
+      const authenticator = new Authenticator().verifyToken(token) as any;
+      if (!authenticator) {
+        throw new UnauthorizedUser();
+      }
+
+      const userData = new UserData();
+      const feed = await userData.feedData(authenticator.id);
+
+      res.status(200).send(feed);
     } catch (error: any) {
       res.status(res.statusCode || 500).send({ message: error.message });
     }

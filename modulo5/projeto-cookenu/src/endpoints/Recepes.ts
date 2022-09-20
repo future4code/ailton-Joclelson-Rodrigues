@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import RecepesData from "../data/RecepesData";
 import FieldsEmptyError from "../error/FieldsEmptyError";
 import UnauthorizedUser from "../error/UnauthorizedUser";
-import currentDate from "../functions/Date";
+import currentDate from "../functions/currentDate";
 import RecepesModel from "../model/RecepesModel";
+import { USER_ROLES } from "../model/UserModel";
 import Authenticator from "../services/Authenticator";
 
 class Recepes {
@@ -56,6 +57,43 @@ class Recepes {
       const getRecepes = await recepeData.getRecepes(id);
 
       res.status(200).send(getRecepes);
+    } catch (error: any) {
+      res.status(res.statusCode || 500).send({ message: error.message });
+    }
+  }
+
+  public async editRecipe(req: Request, res: Response) {
+    try {
+      const token = req.headers.authorization;
+      const id = req.params.id;
+      const { title, description } = req.body;
+
+      if (!token) {
+        throw new UnauthorizedUser();
+      }
+
+      if (!title || !description) {
+        throw new FieldsEmptyError();
+      }
+      const idPerson = new Authenticator().verifyToken(token) as any;
+
+      const recepeData = new RecepesData();
+      const getRecepes = await recepeData.getRecepes(id);
+
+      if (!getRecepes) {
+        throw new Error("Recipe not found");
+      }
+
+      if (
+        idPerson.role === USER_ROLES.NORMAL &&
+        getRecepes.idUser !== idPerson.id
+      ) {
+        throw new Error("Usuario nao autorizado");
+      }
+
+      const result = await recepeData.updateRecepe(id, title, description);
+
+      res.status(200).send({ message: result });
     } catch (error: any) {
       res.status(res.statusCode || 500).send({ message: error.message });
     }

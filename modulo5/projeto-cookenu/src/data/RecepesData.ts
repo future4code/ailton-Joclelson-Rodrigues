@@ -1,3 +1,4 @@
+import convertDate from "../functions/convertDate";
 import RecepesModel, { typeRecepes } from "../model/RecepesModel";
 import BaseDatabase from "./BaseDatabase";
 
@@ -20,18 +21,35 @@ class RecepesData extends BaseDatabase {
     }
   }
 
-  async getRecepes(id: string) {
+  async getRecepes(id: string): Promise<typeRecepes> {
     const result = await this.getConnection()
-      .select("id", "title", "preparation_mode", "creation_date")
+      .select("*")
       .from("lab_cookenu_recepes")
       .where({ id });
+
     const typeRecepesData: typeRecepes = {
       id: result[0].id,
       title: result[0].title,
       description: result[0].preparation_mode,
-      creationDate: result[0].creation_date,
+      creationDate: convertDate(result[0].creation_date),
+      idUser: result[0].id_user,
     };
     return typeRecepesData;
+  }
+
+  async updateRecepe(
+    id: string,
+    title: string,
+    description: string
+  ): Promise<string> {
+    await this.getConnection()
+      .update({
+        title,
+        preparation_mode: description,
+      })
+      .from("lab_cookenu_recepes")
+      .where({ id });
+    return `Recipe updated successfully`;
   }
 }
 export default RecepesData;

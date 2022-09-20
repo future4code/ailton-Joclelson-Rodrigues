@@ -3,8 +3,9 @@ Content-Type: application/json
 
 {
 	"name": "Joclelson",
-	"email": "joclelson@hotmail.com",
-	"password": "115599"
+	"email": "joclelson.159@hotmail.com",
+	"password": "115599",
+	"role": "ADMIN"
 }
 
 ###
@@ -12,7 +13,7 @@ POST http://localhost:3003/login
 Content-Type: application/json
 
 {
-	"email": "joclelson@hotmail.com",
+	"email": "joclelson.159@hotmail.com",
 	"password": "115599"
 }
 
@@ -45,8 +46,31 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMt
 ###
 POST http://localhost:3003/user/follow
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzM1NzM2NCwiZXhwIjoxNjYzMzYwOTY0fQ.W5y7_t-9T2EZDRbT1B62rSb7VZ2bIR2C1vzF3AmfjpY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwOWQ2NDJmLWRiYzktNDlkYi1hN2ZmLTNhZmUxZGMwNDg0YyIsImlhdCI6MTY2MzQyNDcwNSwiZXhwIjoxNjYzNDI4MzA1fQ._Y0DijZ07vWUhbu9wKltpe9TM_dwl4-CAyzcsJIfgJI
 
 {
-	"userToFollowId": "d09d642f-dbc9-49db-a7ff-3afe1dc0484c"
+	"userToFollowId": "7c207d6c-ae8c-4323-ab8a-a1118fe3054b"
+}
+
+###
+POST http://localhost:3003/user/unfollow
+Content-Type:  application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzQyMTA0NiwiZXhwIjoxNjYzNDI0NjQ2fQ.xJCzunUKxNiSb3CSCs6Z3ydvVKOpvL1_zz4YVLVY3u0
+
+{
+	"userToUnfollowId": "d09d642f-dbc9-49db-a7ff-3afe1dc0484c"
+}
+
+###
+GET http://localhost:3003/user/feed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwOWQ2NDJmLWRiYzktNDlkYi1hN2ZmLTNhZmUxZGMwNDg0YyIsImlhdCI6MTY2MzQzMzcwMCwiZXhwIjoxNjYzNDM3MzAwfQ.wG0ro1mFzpiePbBsmayANmcPBxEOW64Aw11gfULahGs
+
+###
+PUT http://localhost:3003/recipe/edit/166328124763
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjZTgzZGMwLTY4NDAtNDE0ZS1iMDNiLTZhMjNjMjMwMTRkZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzYzNDI1OCwiZXhwIjoxNjYzNjM3ODU4fQ.CscwkEhjXxhAXcps8Kb8PHWIQodmo98T3a9is2_uFn4
+
+{
+	"title": "Camarão ao alho e oleo",
+	"description": "camarão e muito alho"
 }

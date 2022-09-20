@@ -1,21 +1,17 @@
 import * as jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import { USER_ROLES } from "../model/UserModel";
 
 dotenv.config();
 
-/* export enum typeUser {
-  ADMIN = "ADMIN",
-  NORMAL = "NORMAL",
-} */
-
-/* interface UserSystem {
+interface UserSystem {
   id: string;
-  role: typeUser;
-} */
+  role: USER_ROLES;
+}
 
 class Authenticator {
-  generateToken(id: string): string {
-    const token = jwt.sign({ id }, process.env.JWT_KEY as string, {
+  generateToken(typeUser: UserSystem): string {
+    const token = jwt.sign(typeUser, process.env.JWT_KEY as string, {
       expiresIn: process.env.JWT_EXPIRATION_TIME,
     });
 

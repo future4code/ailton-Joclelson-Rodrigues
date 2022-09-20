@@ -2,7 +2,8 @@ export interface typeRecepes {
   id: string;
   title: string;
   description: string;
-  creationDate: Date;
+  creationDate: string;
+  idUser: string;
 }
 
 class RecepesModel {
