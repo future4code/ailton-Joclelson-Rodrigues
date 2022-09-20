@@ -1,0 +1,76 @@
+POST http://localhost:3003/signup
+Content-Type: application/json
+
+{
+	"name": "Joclelson",
+	"email": "joclelson.159@hotmail.com",
+	"password": "115599",
+	"role": "ADMIN"
+}
+
+###
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+	"email": "joclelson.159@hotmail.com",
+	"password": "115599"
+}
+
+###
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: 
+
+
+###
+GET http://localhost:3003/user/d09d642f-dbc9-49db-a7ff-3afe1dc0484c
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzM0ODUzOSwiZXhwIjoxNjYzMzUyMTM5fQ.Zk0MLuNH4Nb3PXay8X3GZCp-QzMmCJf4FKnK5nHirDg
+
+
+###
+POST http://localhost:3003/recipe
+Content-Type: application/json
+Authorization: 
+
+{
+	"title": "Moqueca de Peixe Fácil", 
+	"preparationMode": "asas",
+	"userId": "7c207d6c-ae8c-4323-ab8a-a1118fe3054b"
+}
+
+###
+GET http://localhost:3003/recipe/1663281247635
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzI4NDY2MiwiZXhwIjoxNjYzMjg4MjYyfQ.e7BSppx5aouierS1IYLcHxMAw1uGOfEI4JwIT7YhM6s
+
+###
+POST http://localhost:3003/user/follow
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwOWQ2NDJmLWRiYzktNDlkYi1hN2ZmLTNhZmUxZGMwNDg0YyIsImlhdCI6MTY2MzQyNDcwNSwiZXhwIjoxNjYzNDI4MzA1fQ._Y0DijZ07vWUhbu9wKltpe9TM_dwl4-CAyzcsJIfgJI
+
+{
+	"userToFollowId": "7c207d6c-ae8c-4323-ab8a-a1118fe3054b"
+}
+
+###
+POST http://localhost:3003/user/unfollow
+Content-Type:  application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjdjMjA3ZDZjLWFlOGMtNDMyMy1hYjhhLWExMTE4ZmUzMDU0YiIsImlhdCI6MTY2MzQyMTA0NiwiZXhwIjoxNjYzNDI0NjQ2fQ.xJCzunUKxNiSb3CSCs6Z3ydvVKOpvL1_zz4YVLVY3u0
+
+{
+	"userToUnfollowId": "d09d642f-dbc9-49db-a7ff-3afe1dc0484c"
+}
+
+###
+GET http://localhost:3003/user/feed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQwOWQ2NDJmLWRiYzktNDlkYi1hN2ZmLTNhZmUxZGMwNDg0YyIsImlhdCI6MTY2MzQzMzcwMCwiZXhwIjoxNjYzNDM3MzAwfQ.wG0ro1mFzpiePbBsmayANmcPBxEOW64Aw11gfULahGs
+
+###
+PUT http://localhost:3003/recipe/edit/166328124763
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFjZTgzZGMwLTY4NDAtNDE0ZS1iMDNiLTZhMjNjMjMwMTRkZSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2MzYzNDI1OCwiZXhwIjoxNjYzNjM3ODU4fQ.CscwkEhjXxhAXcps8Kb8PHWIQodmo98T3a9is2_uFn4
+
+{
+	"title": "Camarão ao alho e oleo",
+	"description": "camarão e muito alho"
+}
