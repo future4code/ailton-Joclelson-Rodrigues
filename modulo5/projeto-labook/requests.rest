@@ -1,0 +1,31 @@
+### Endpoint de teste
+GET http://localhost:3003/ping
+
+### Cadastro
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "jackson",
+    "email": "jackson@gmail.com",
+    "password": "116699"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+Authorization: 
+
+{
+    "email": "jackson@gmail.com",
+    "password": "116699"
+}
+
+### Criar Post
+POST http://localhost:3003/posts/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzYTE3MzY3LWVmNzAtNGFjZS05ODdjLWU3NmIzZDE4ZjFiNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM4ODE2ODEsImV4cCI6MTY2Mzk2ODA4MX0.wCT10kC1kAjXknqkgq6nje0xOaltY3hOFds8hOE4a3
+
+{
+    "content": "Vai corinthians"
+}
