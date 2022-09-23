@@ -55,3 +55,19 @@ export interface inputPostDTO {
   content: string;
   token: string;
 }
+
+export interface inputDeleteDTO {
+  id: string;
+  token: string;
+}
+
+export interface inputLikeDTO {
+  postId: string;
+  token: string;
+}
+
+export interface inputSaveLikeDTO {
+  id: string;
+  postId: string;
+  userId: string;
+}
