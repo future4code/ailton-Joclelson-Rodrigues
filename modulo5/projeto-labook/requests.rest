@@ -30,7 +30,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzYTE3MzY3LWVmNzAt
     "content": "Vai corinthians"
 }
 
-### Get All Posts
+### 4 Get All Posts
 GET http://localhost:3003/posts/
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzYTE3MzY3LWVmNzAtNGFjZS05ODdjLWU3NmIzZDE4ZjFiNiIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM5NTU0ODcsImV4cCI6MTY2NDA0MTg4N30.sHcyeSlMWOY3tNJlGeIP2gwS4rWvka8zbpZ0MI9nNZM
 
@@ -50,7 +50,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImMzYTE3MzY3LWVmNzAt
 ### Deslike
 POST http://localhost:3003/posts/deslike
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM5NzExNzcsImV4cCI6MTY2NDA1NzU3N30.IFCdcylIZdxtV8OgoA_GHYN3414JA8CbbTgsAOKOiQY
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEwMyIsInJvbGUiOiJOT1JNQUwiLCJpYXQiOjE2NjM5NzExNzcsImV4cCI6MTY2NDA1NzU3N30.IFCdcylIZdxtV8OgoA_GHYN3414JA8CbbTgsAOKOiQy
 
 {
     "postId": "201"

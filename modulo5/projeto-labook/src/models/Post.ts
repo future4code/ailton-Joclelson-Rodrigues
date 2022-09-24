@@ -57,7 +57,7 @@ export interface inputPostDTO {
 }
 
 export interface inputDeleteDTO {
-  id: string;
+  postId: string;
   token: string;
 }
 

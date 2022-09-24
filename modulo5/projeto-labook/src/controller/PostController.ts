@@ -5,7 +5,7 @@ import { inputDeleteDTO, inputLikeDTO, inputPostDTO } from "../models/Post";
 export class PostController {
   constructor(private postBusiness: PostBusiness) {}
 
-  public createPost = async (req: Request, res: Response) => {
+  public create = async (req: Request, res: Response) => {
     try {
       const { content } = req.body;
       const token = req.headers.authorization as string;
@@ -25,7 +25,7 @@ export class PostController {
     }
   };
 
-  public getPost = async (req: Request, res: Response) => {
+  public posts = async (req: Request, res: Response) => {
     try {
       const token = req.headers.authorization as string;
 
@@ -39,13 +39,13 @@ export class PostController {
     }
   };
 
-  public deletePost = async (req: Request, res: Response) => {
+  public delete = async (req: Request, res: Response) => {
     try {
-      const id = req.params.id;
+      const postId = req.params.id;
       const token = req.headers.authorization as string;
 
       const input: inputDeleteDTO = {
-        id,
+        postId,
         token,
       };
 

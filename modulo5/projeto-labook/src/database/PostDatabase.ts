@@ -52,12 +52,13 @@ export class PostDatabase extends BaseDatabase {
     return `Post deletado com sucesso!`;
   };
 
-  public checkLike = async (id: string) => {
+  public checkLike = async (postId: string, userId: string) => {
     const result = await this.getConnection()
       .select("*")
       .from(PostDatabase.TABLE_LIKES)
-      .where({ id });
-    return result;
+      .where({ post_id: postId })
+      .andWhere({ user_id: userId });
+    return result[0];
   };
 
   public insertLike = async (input: inputSaveLikeDTO): Promise<string> => {

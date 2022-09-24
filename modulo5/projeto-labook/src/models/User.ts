@@ -71,3 +71,9 @@ export interface inputLoginDTO {
   email: string;
   password: string;
 }
+
+export interface inputRoleDTO {
+  token: string;
+  userId: string;
+  role: string;
+}

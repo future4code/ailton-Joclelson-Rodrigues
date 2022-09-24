@@ -7,11 +7,13 @@ import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import {
   inputLoginDTO,
+  inputRoleDTO,
   inputSignupDTO,
   IUserDB,
   User,
   USER_ROLES,
 } from "../models/User";
+import { AuthenticationError } from "../errors/AuthenticationError";
 
 export class UserBusiness {
   constructor(
@@ -127,5 +129,22 @@ export class UserBusiness {
     };
 
     return response;
+  };
+
+  public auth = async (input: inputRoleDTO) => {
+    const { token, userId, role } = input;
+
+    if (!token || !userId || !role) {
+      throw new ParamsError();
+    }
+
+    const verifyToken = this.authenticator.getTokenPayload(token) as any;
+    if (verifyToken.role !== USER_ROLES.ADMIN) {
+      throw new AuthenticationError();
+    }
+
+    const result = this.userDatabase.modifyRole(userId, role);
+
+    return result;
   };
 }

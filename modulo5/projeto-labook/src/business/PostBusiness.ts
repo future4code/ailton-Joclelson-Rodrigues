@@ -1,6 +1,7 @@
 import { PostDatabase } from "../database/PostDatabase";
 import { AuthorizationError } from "../errors/AuthorizationError";
 import { ParamsError } from "../errors/ParamsError";
+import { NotFoundError } from "./../errors/NotFoundError";
 import {
   inputDeleteDTO,
   inputLikeDTO,
@@ -80,7 +81,7 @@ export class PostBusiness {
   };
 
   public deletePost = async (input: inputDeleteDTO) => {
-    const { id, token } = input;
+    const { postId, token } = input;
 
     if (!token) {
       throw new ParamsError();
@@ -91,7 +92,12 @@ export class PostBusiness {
       throw new AuthorizationError();
     }
 
-    const getPost = await this.postDatabase.getPost(id);
+    const checkPost = await this.postDatabase.getPost(postId);
+    if (!checkPost) {
+      throw new NotFoundError();
+    }
+
+    const getPost = await this.postDatabase.getPost(postId);
 
     if (
       verifyToken.role !== USER_ROLES.ADMIN &&
@@ -100,7 +106,7 @@ export class PostBusiness {
       throw new AuthorizationError();
     }
 
-    const deletePost = await this.postDatabase.deletePost(id);
+    const deletePost = await this.postDatabase.deletePost(postId);
 
     return deletePost;
   };
@@ -117,9 +123,14 @@ export class PostBusiness {
       throw new AuthorizationError();
     }
 
-    const check = await this.postDatabase.checkLike(verifyToken.id);
-    if (check.length) {
-      return new Error("Você ja curtiu esse post!");
+    const checkPost = await this.postDatabase.getPost(postId);
+    if (!checkPost) {
+      throw new NotFoundError();
+    }
+
+    const checkLike = await this.postDatabase.checkLike(postId, verifyToken.id);
+    if (checkLike) {
+      throw new Error("Você ja curtiu esse post!");
     }
 
     const id = Date.now().toString();
@@ -147,8 +158,18 @@ export class PostBusiness {
       throw new AuthorizationError();
     }
 
-    const saveLike = this.postDatabase.deslike(postId, verifyToken.id);
+    const checkPost = await this.postDatabase.getPost(postId);
+    if (!checkPost) {
+      throw new NotFoundError();
+    }
 
-    return saveLike;
+    const checkLike = await this.postDatabase.checkLike(postId, verifyToken.id);
+    if (!checkLike) {
+      throw new Error("Você não curtiu esse post!");
+    }
+
+    const saveDeslike = this.postDatabase.deslike(postId, verifyToken.id);
+
+    return saveDeslike;
   };
 }
