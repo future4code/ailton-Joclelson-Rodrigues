@@ -1,0 +1,20 @@
+GET http://localhost:3003/get
+
+### Signup
+POST http://localhost:3003/users/signup
+Content-Type: application/json
+
+{
+    "name": "Joclelson",
+    "email": "joclelson@gmail.com",
+    "password": "115599"
+}
+
+### Login
+POST http://localhost:3003/users/login
+Content-Type: application/json
+
+{
+    "email": "joclelson@gmail.com",
+    "password": "115599"
+}
