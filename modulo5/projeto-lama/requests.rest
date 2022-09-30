@@ -1,6 +1,4 @@
-GET http://localhost:3003/get
-
-### Signup
+### User Signup
 POST http://localhost:3003/users/signup
 Content-Type: application/json
 
@@ -10,11 +8,21 @@ Content-Type: application/json
     "password": "115599"
 }
 
-### Login
+### User Login
 POST http://localhost:3003/users/login
 Content-Type: application/json
 
 {
     "email": "joclelson@gmail.com",
     "password": "115599"
+}
+
+### Shows Create
+POST http://localhost:3003/shows/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxMmVkZjAzLTQwMzctNDY5OS05ZTVlLTVmZTM2NTA3MjY3ZCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2NDU2ODczOCwiZXhwIjoxNjY0NTcyMzM4fQ.k-1pAwIuFklXh_xeqcw89BOySvo0JlzU9qnnY0DJkcg
+
+{
+    "band": "sss",
+    "startsAt": "ss"
 }

@@ -4,3 +4,9 @@ export interface IShowDB {
   startsAt: string;
   tickets: string;
 }
+
+export interface inputCreateDTO {
+  band: string;
+  startsAt: string;
+  token: string;
+}

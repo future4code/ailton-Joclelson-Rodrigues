@@ -19,12 +19,8 @@ export class Authenticator {
   };
 
   getTokenPayload = (token: string): ITokenPayload | null => {
-    try {
-      const payload = jwt.verify(token, process.env.JWT_KEY as string);
+    const payload = jwt.verify(token, process.env.JWT_KEY as string);
 
-      return payload as ITokenPayload;
-    } catch (error) {
-      return null;
-    }
+    return payload as ITokenPayload;
   };
 }
