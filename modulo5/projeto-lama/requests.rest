@@ -3,9 +3,9 @@ POST http://localhost:3003/users/signup
 Content-Type: application/json
 
 {
-    "name": "Joclelson",
-    "email": "joclelson@gmail.com",
-    "password": "115599"
+    "name": "Jackson",
+    "email": "jackson@gmail.com",
+    "password": "116699"
 }
 
 ### User Login
@@ -20,9 +20,9 @@ Content-Type: application/json
 ### Shows Create
 POST http://localhost:3003/shows/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxMmVkZjAzLTQwMzctNDY5OS05ZTVlLTVmZTM2NTA3MjY3ZCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2NDU2ODczOCwiZXhwIjoxNjY0NTcyMzM4fQ.k-1pAwIuFklXh_xeqcw89BOySvo0JlzU9qnnY0DJkcg
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImUxMmVkZjAzLTQwMzctNDY5OS05ZTVlLTVmZTM2NTA3MjY3ZCIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY2NDY0NjY2MiwiZXhwIjoxNjY0NjUwMjYyfQ.P_4nHdRylcbr-hSsdR1J96CFfrX-5xUwRut1Fnr7wiA
 
 {
-    "band": "sss",
-    "startsAt": "ss"
+    "band": "Linkin Park",
+    "startsAt": "06/12/2022"
 }

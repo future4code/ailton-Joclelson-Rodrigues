@@ -15,7 +15,9 @@ class Showcontroller {
         startsAt,
         token,
       };
-      const response = this.showBusiness.create(input);
+      const response = await this.showBusiness.create(input);
+
+      res.status(201).send(response);
     } catch (error: any) {
       res
         .status(error.statusCode || 500)

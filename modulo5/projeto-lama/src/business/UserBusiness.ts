@@ -54,7 +54,7 @@ class UserBusiness {
     const id = this.idGenerator.generateId();
     const passwordHash = await this.hashManager.hash(password);
 
-    const newUser = new User(id, name, email, passwordHash, USER_ROLES.ADMIN);
+    const newUser = new User(id, name, email, passwordHash, USER_ROLES.NORMAL);
     await this.userDatabase.saveUser(newUser);
 
     const payload: ITokenPayload = {
