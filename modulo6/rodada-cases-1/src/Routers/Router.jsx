@@ -1,34 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "../pages/home/HomePage";
-import CartPage from "../pages/cart/CartPage";
 import RequestPage from "../pages/requests/RequestPage";
 import Header from "../components/Header/Header";
 import useRequestData from "../Hooks/useRequestData";
+import Sidebar from "../components/Sidebar/Sidebar";
 import { BASE_URL } from "../constants/Urls";
 
 const Router = () => {
+  const [sidebar, setSidebar] = useState(false);
+
   const { data, loading, cart, setCart } = useRequestData(
     `${BASE_URL}/products`
   );
 
-  const addPoduct = (id) => {
-    const check = cart.some((product) => product.id === id);
+  const addPoduct = (product) => {
+    const newCart = [...cart];
 
-    if (!check) {
-      const productCart = data.filter((product) => product.id === id);
+    const check = newCart.findIndex((item) => item.id === product.id);
+    console.log(check);
 
-      productCart[0].qtyStock = 1;
-
-      setCart([...cart, ...productCart]);
+    if (check >= 0) {
+      newCart[check].qtyStock += 1;
+      newCart[check].price += product.price;
+    } else {
+      newCart.push({ ...product, qtyStock: 1 });
     }
+    setCart(newCart);
+  };
 
-    // const productCart = data.filter((product) => product.id === id);
+  const showSidebar = () => {
+    setSidebar(!sidebar);
   };
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header showSidebar={showSidebar} />
+      {sidebar && <Sidebar />}
       <Routes>
         <Route
           index
@@ -36,8 +44,10 @@ const Router = () => {
             <HomePage data={data} loading={loading} addPoduct={addPoduct} />
           }
         />
-        <Route path="/pedidos" element={<RequestPage cart={cart} />} />
-        <Route path="/carrinho" element={<CartPage />} />
+        <Route
+          path="/pedidos"
+          element={<RequestPage cart={cart} setCart={setCart} />}
+        />
       </Routes>
     </BrowserRouter>
   );

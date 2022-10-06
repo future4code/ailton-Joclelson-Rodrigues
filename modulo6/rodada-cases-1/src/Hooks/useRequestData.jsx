@@ -20,7 +20,7 @@ const useRequestData = (url) => {
           alert(err);
         }
       });
-  }, [url]);
+  }, [url, cart]);
 
   return { data, loading, cart, setCart };
 };

@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { HeaderContainer } from "./styled";
+import cartImage from "../../assets/cart.png";
 
-const Header = () => {
+const Header = ({ showSidebar }) => {
   const navigate = useNavigate();
 
   const goToHome = (event) => {
@@ -9,10 +10,6 @@ const Header = () => {
     navigate("/");
   };
 
-  const goToCart = (event) => {
-    event.preventDefault();
-    navigate("/carrinho");
-  };
   const goToRequest = (event) => {
     event.preventDefault();
     navigate("/pedidos");
@@ -20,6 +17,7 @@ const Header = () => {
 
   return (
     <HeaderContainer>
+      <div></div>
       <ul>
         <a onClick={goToHome} href="">
           Home
@@ -27,10 +25,8 @@ const Header = () => {
         <a onClick={goToRequest} href="">
           Pedidos
         </a>
-        <a onClick={goToCart} href="">
-          Carrinho
-        </a>
       </ul>
+      <img src={cartImage} onClick={showSidebar} />
     </HeaderContainer>
   );
 };
