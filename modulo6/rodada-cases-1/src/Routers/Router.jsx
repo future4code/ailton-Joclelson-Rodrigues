@@ -17,12 +17,11 @@ const Router = () => {
   const addPoduct = (product) => {
     const newCart = [...cart];
 
-    const check = newCart.findIndex((item) => item.id === product.id);
-    console.log(check);
+    const index = newCart.findIndex((item) => item.id === product.id);
 
-    if (check >= 0) {
-      newCart[check].qtyStock += 1;
-      newCart[check].price += product.price;
+    if (index >= 0) {
+      newCart[index].qtyStock += 1;
+      newCart[index].price += product.price;
     } else {
       newCart.push({ ...product, qtyStock: 1 });
     }

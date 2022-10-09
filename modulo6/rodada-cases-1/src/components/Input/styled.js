@@ -12,7 +12,7 @@ export const InputContainer = styled.div`
     transition: 0.2s ease-in-out;
   }
   input {
-    width: 50%;
+    width: 100%;
     padding: 8px;
     border: 1px solid lightgray;
     background-color: transparent;
