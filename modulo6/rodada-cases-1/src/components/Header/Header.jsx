@@ -5,26 +5,25 @@ import cartImage from "../../assets/cart.png";
 const Header = ({ showSidebar }) => {
   const navigate = useNavigate();
 
-  const goToHome = (event) => {
-    event.preventDefault();
+  const goToHome = () => {
     navigate("/");
   };
 
-  const goToRequest = (event) => {
-    event.preventDefault();
+  const goToRequest = () => {
     navigate("/pedidos");
+  };
+
+  const goToInventory = () => {
+    navigate("/estoque");
   };
 
   return (
     <HeaderContainer>
       <div></div>
       <ul>
-        <a onClick={goToHome} href="">
-          Home
-        </a>
-        <a onClick={goToRequest} href="">
-          Pedidos
-        </a>
+        <a onClick={goToHome}>Home</a>
+        <a onClick={goToRequest}>Pedidos</a>
+        <a onClick={goToInventory}>Estoque</a>
       </ul>
       <img src={cartImage} onClick={showSidebar} />
     </HeaderContainer>

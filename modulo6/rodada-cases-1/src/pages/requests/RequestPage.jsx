@@ -82,7 +82,7 @@ const RequestPage = ({ cart, setCart }) => {
           label={""}
         />
         {productsCart}
-        {`Valor total: ${total}`}
+        {`Valor total: R$${total.toFixed(2).replace(".", ",")}`}
         <Button>Fazer Pedido</Button>
         <ToastContainer />
       </FormContainer>

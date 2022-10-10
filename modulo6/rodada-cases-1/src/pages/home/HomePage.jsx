@@ -8,7 +8,7 @@ const HomePage = ({ data, loading, addPoduct }) => {
         <p>{product.name}</p>
         <div>
           <p>{`R$: ${product.price}`}</p>
-          <p>{`Qtd. disponível: ${product.qtyStock}`}</p>
+          {/* <p>{`Qtd. disponível: ${product.qtyStock}`}</p> */}
         </div>
         <button onClick={() => addPoduct(product)}>Adicionar</button>
       </ProductContainer>

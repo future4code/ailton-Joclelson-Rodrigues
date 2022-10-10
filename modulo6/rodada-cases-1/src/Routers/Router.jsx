@@ -6,6 +6,7 @@ import Header from "../components/Header/Header";
 import useRequestData from "../Hooks/useRequestData";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { BASE_URL } from "../constants/Urls";
+import InventoryPage from "../pages/inventory/InventoryPage";
 
 const Router = () => {
   const [sidebar, setSidebar] = useState(false);
@@ -47,6 +48,7 @@ const Router = () => {
           path="/pedidos"
           element={<RequestPage cart={cart} setCart={setCart} />}
         />
+        <Route path="/estoque" element={<InventoryPage data={data} />} />
       </Routes>
     </BrowserRouter>
   );

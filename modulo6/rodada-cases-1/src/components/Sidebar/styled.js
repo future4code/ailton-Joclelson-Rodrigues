@@ -6,8 +6,9 @@ export const Container = styled.div`
   height: 100%;
   top: 0;
   right: 0px;
-  width: 400px;
+  width: 450px;
   animation: showSidebar 0.4s;
+  box-shadow: -2px 0 5px 0px #0dab77;
   h2 {
     position: absolute;
     top: 80px;
@@ -22,7 +23,20 @@ export const Container = styled.div`
     }
     to {
       opacity: 1;
-      width: 400px;
+      width: 450px;
     }
+  }
+`;
+
+export const Purchases = styled.table`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  top: 120px;
+  left: 10px;
+  color: #fff;
+  width: 430px;
+  p {
+    font-size: smaller;
   }
 `;
