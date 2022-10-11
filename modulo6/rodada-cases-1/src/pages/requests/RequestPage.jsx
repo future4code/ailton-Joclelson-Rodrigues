@@ -46,18 +46,20 @@ const RequestPage = ({ cart, setCart }) => {
 
   const sendRequest = async (event) => {
     event.preventDefault();
+
     const body = {
       form,
       cart,
     };
-
     await axios
       .post(`${BASE_URL}/products/purchases`, body)
       .then((response) => {
+        console.log(response);
         toast.success(`${response.data}`);
         clean();
       })
       .catch((error) => {
+        console.log(error);
         toast.error(`${error.response.data.message}`);
       });
   };
