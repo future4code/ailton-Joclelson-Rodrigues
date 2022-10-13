@@ -1,17 +1,25 @@
 import useRequestData from "../../Hooks/useRequestData";
 import { BASE_URL } from "../../constants/Urls";
-import { Container, Purchases } from "./styled";
+import { Container, Paragra, Purchases } from "./styled";
 import Loading from "../loading/Loading";
 
 const Sidebar = () => {
   const { data, loading } = useRequestData(`${BASE_URL}/products/purchases`);
-
+  console.log(data);
   const purchases = data?.map((item, index) => {
     return (
       <Purchases key={index}>
-        <p>{item.name}</p>
-        <p>{item.qtyStock}</p>
-        <p>{item.price}</p>
+        <div className="textup">
+          <p>N. Cliente</p>
+          <h5>{item.client}</h5>
+          <p>Data de entrega:</p>
+          <h5>{item.date}</h5>
+        </div>
+        <div>
+          <p>{`N. Produto: ${item.name}`}</p>
+          <p>{`Preço: ${item.price}`}</p>
+          <p>{`Quantidade: ${item.qtd}`}</p>
+        </div>
       </Purchases>
     );
   });
@@ -19,6 +27,7 @@ const Sidebar = () => {
     <Container>
       <h2>Compras</h2>
       {purchases}
+      {!purchases?.length && <Paragra>Você não tem compras :( </Paragra>}
     </Container>
   );
 };

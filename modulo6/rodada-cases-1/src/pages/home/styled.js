@@ -10,6 +10,8 @@ export const ProductsContainer = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 12px auto;
 `;
 
 export const ProductContainer = styled.div`
