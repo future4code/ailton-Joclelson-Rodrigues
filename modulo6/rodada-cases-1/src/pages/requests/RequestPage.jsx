@@ -28,7 +28,10 @@ const RequestPage = ({ cart, setCart }) => {
     );
   });
 
-  const totalCart = cart.reduce((valAtn, valAtu) => valAtn + valAtu.price, 0);
+  const totalCart = cart.reduce(
+    (valPrevious, valCurrent) => valPrevious + valCurrent.price,
+    0
+  );
 
   const removeProduct = (product) => {
     const products = [...cart];
@@ -60,13 +63,11 @@ const RequestPage = ({ cart, setCart }) => {
     await axios
       .post(`${BASE_URL}/products/purchases`, body)
       .then((response) => {
-        console.log(response);
         toast.success(`${response.data}`);
         clean();
         setCart([]);
       })
       .catch((error) => {
-        console.log(error);
         toast.error(`${error.response.data.message}`);
       });
   };
